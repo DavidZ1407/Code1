@@ -1,5 +1,7 @@
-Code 1 
+# Code 1 
+
 Name: David
 A page for the Code1 module.  
-<img src="./assets/image.gif" width="50%" height="50%"/>
+![Unbenannt](https://github.com/user-attachments/assets/8a7656ff-32e8-49c7-84e8-9cc5a59d053e)
+
 
