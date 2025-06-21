@@ -1,17 +1,13 @@
-<<<<<<< HEAD
-Code 1 
-Name: David
+# 💻 Code 1 – Module Page
 
+## 👤 Name
+**David Zahn**
 
-A page for the Code1 module. 
-![alt text](Unbenannt.jpg)
-=======
-# Code 1 
-A page for the Code1 module.  
+## 📄 Description
+This is an overview page for the **Code1 module**.
 
-Name: David Zahn  
+## 📔 Diary
+🗓️ You can view the diary here:  
+👉 [Open Diary](https://davidz1407.github.io/Code1/Diary/index.html)  
 
-![Unbenannt](https://github.com/user-attachments/assets/8a7656ff-32e8-49c7-84e8-9cc5a59d053e)
-
->>>>>>> bfbeca16082adc6eacd43ef60f33fff36c3ba4fe
-
+![Module Preview](./Unbenannt.jpg)
