@@ -9,5 +9,5 @@ This is an overview page for the **Code1 module**.
 
 ## 📔 My Notes
 🗓️ You can view my Notes here:  
-👉 [Open Diary](https://davidz1407.github.io/Code1/Diary/index.html)  
+👉 [Open Notes](https://davidz1407.github.io/Code1/Diary/index.html)  
 
