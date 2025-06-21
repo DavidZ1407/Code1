@@ -4,7 +4,7 @@
 **David Zahn**
 
 ## 📄 Description
-This is an overview page for the **Code1 module**.
+This is an overview page for the **Code1 module**.  
 ![Module Preview](./Unbenannt.jpg)
 
 ## 📔 My Notes
