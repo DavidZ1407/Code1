@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Diary_DZ</title>
+    <script defer src="script.js"></script>
+    <script defer src="node.js"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <section class="diary_box">
+        <h1 class="heading">My Notes</h1>
+
+        <div class="note_buttons">
+            <button data-date="Day_1" onclick="loadNotes('Day_1')">Day 1</button>
+            <button data-date="Day_2" onclick="loadNotes('Day_2')">Day 2</button>
+        </div>
+
+        <div class="container_diary">
+            <div class="col">
+                <div class="col_box">
+                    <div class="col_overlay">
+                        <h2 class="overlay_title" id="noteTopic">Topic</h2>
+                        <p class="overlay_subtext" id="noteNotes">Notes here...</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</body>
+
+</html>

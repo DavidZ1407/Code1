@@ -1,0 +1,157 @@
+/* ============================= */
+/* Root variables and global styles */
+/* ============================= */
+:root {
+  --main-color: #3399ff;
+  --text-color: #ffffff;
+  --bg-color: #121212;
+  --pulse-color: #00ffe7;
+}
+
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background-color: var(--bg-color);
+  color: var(--text-color);
+}
+
+/* ============================= */
+/* Layout containers */
+/* ============================= */
+.diary_box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 5rem 2rem;
+}
+
+.container_diary {
+  display: flex;
+  flex-direction: column;
+  gap: 5rem;
+  width: 100%;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+/* ============================= */
+/* Heading styles */
+/* ============================= */
+.heading {
+  font-size: 7rem;
+  text-align: center;
+  margin: 5rem 0;
+  color: var(--main-color);
+  text-shadow: 0 0 25px var(--main-color);
+}
+
+/* ============================= */
+/* Note box styles */
+/* ============================= */
+.col {
+  width: 100%;
+  position: relative;
+  border-radius: 1em;
+}
+
+.col_box {
+  position: relative;
+  border-radius: 1em;
+  background-color: #1e1e1e;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+  padding: 2rem;
+  min-height: 200px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer;
+}
+
+.col_box:hover {
+  transform: scale(1.02);
+}
+
+.col_box.active {
+  transform: scale(1.1);
+  box-shadow: 0 0 40px var(--main-color);
+}
+
+/* ============================= */
+/* Overlay content inside the box */
+/* ============================= */
+.col_overlay {
+  opacity: 1;
+  position: static;
+  background: none;
+  padding: 0;
+  pointer-events: auto;
+  text-align: left;
+}
+
+.overlay_title {
+  font-size: 2rem;
+  color: var(--main-color);
+  font-weight: bold;
+  margin-bottom: 1rem;
+}
+
+.overlay_subtext {
+  font-size: 1.4rem;
+  opacity: 0.9;
+  line-height: 1.6;
+  word-wrap: break-word;
+}
+
+/* ============================= */
+/* Buttons container and styling */
+/* ============================= */
+.note_buttons {
+  margin-bottom: 3rem;
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+}
+
+.note_buttons button {
+  padding: 0.8rem 2rem;
+  border: none;
+  border-radius: 0.5em;
+  background-color: var(--main-color);
+  color: #000;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.note_buttons button.active {
+  background-color: var(--main-color);
+  color: var(--bg-color);
+  animation: none !important;
+}
+
+.note_buttons button:not(.active) {
+  animation: pulse 2s infinite;
+}
+
+/* ============================= */
+/* Pulse animation keyframes */
+/* ============================= */
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+    text-shadow: 0 0 0 var(--pulse-color);
+  }
+  70% {
+    transform: scale(1.05);
+    text-shadow:
+      0 0 12px var(--pulse-color),
+      0 0 24px var(--pulse-color);
+  }
+  100% {
+    transform: scale(1);
+    text-shadow: 0 0 0 var(--pulse-color);
+  }
+}
