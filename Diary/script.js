@@ -22,7 +22,7 @@ function loadNotes(date) {
   if (Array.isArray(notes)) {
 
     for (const section of notes) {
-      const color = section.color || "#00ffe7"; 
+      const color = section.color || "#00ffe7";
       html += `
         <h4 style="color:${color}; text-shadow: 0 0 6px ${color}; font-size: 1.8rem; margin-top: 1.5rem;">
           ${section.title}
@@ -36,7 +36,7 @@ function loadNotes(date) {
       html += `<h4>${category}</h4><ul>${items.map(n => `<li>${n}</li>`).join('')}</ul>`;
     }
   } else {
-    // Fallback: simple array
+   
     html += `<ul>${(notes || []).map(n => `<li>${n}</li>`).join("")}</ul>`;
   }
 

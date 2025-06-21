@@ -13,7 +13,7 @@ const notesData = {
       },
       {
         title: "Tools & Editors",
-        color: "#ffb347",
+        color: "#fcae66",
         items: [
           "Visual Studio Code supports debugging, syntax highlighting, intelligent code completion, snippets, refactoring, and embedded Git.",
           "Version Control allows multiple people to work on the same project; last version wins.",
@@ -24,7 +24,7 @@ const notesData = {
       },
       {
         title: "Git Basics",
-        color: "#9aff87",
+        color: "#7edc84",
         items: [
           "Git is a version control system for backups and managing code versions.",
           "Repository is where your project files are stored.",
