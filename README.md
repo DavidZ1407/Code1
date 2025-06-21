@@ -5,9 +5,9 @@
 
 ## 📄 Description
 This is an overview page for the **Code1 module**.
+![Module Preview](./Unbenannt.jpg)
 
-## 📔 Diary
-🗓️ You can view the diary here:  
+## 📔 My Notes
+🗓️ You can view my Notes here:  
 👉 [Open Diary](https://davidz1407.github.io/Code1/Diary/index.html)  
 
-![Module Preview](./Unbenannt.jpg)
