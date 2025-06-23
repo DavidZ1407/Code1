@@ -56,13 +56,18 @@ const notesData = {
   },
 
   "Day_2": {
-    topic: "Example 2",
+    topic: "Task02_HTML",
     notes: [
       {
-        title: "Example Topic",
-        color: "#cccccc",
+        title: "Task 2.1",
+        color: "#00e0d1",
         items: [
-          "Example 2"
+          "Finde out the meaning of the akronym HTML  Hyper Text Marker Language ",
+          "Tome Berners-Lee made HTML to help CERN researchers organize scientific information 1993",
+          "derived from the traditional publishing practice called marking up a manuscript",
+          "syntax refers to the rules the structure and arrangement of words and phrases in a sentence",
+           "semantics deals with the meaning of those words and how they relate to each other",
+            "First Site World Wide Web",
         ]
       }
     ]
