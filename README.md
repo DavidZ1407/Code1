@@ -13,5 +13,5 @@ This is an overview page for the **Code1 module**.
 
 ## 🔗 My GitHub Pages
 📄 You can view my Pages here:  
-👉 [Task 2](https://davidz1407.github.io/Code1/Task%202%20HTML/Test.html)  
+👉 [Task 2](https://davidz1407.github.io/Code1/Task_2_HTML/Test.html)  
 
