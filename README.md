@@ -11,3 +11,7 @@ This is an overview page for the **Code1 module**.
 🗓️ You can view my Notes here:  
 👉 [Open Notes](https://davidz1407.github.io/Code1/Diary/index.html)  
 
+## 📄 My GitHub Pages
+🗓️ You can view my Pages here:  
+👉 [Task 2](https://davidz1407.github.io/Code1/Task%202%20HTML/Test.html)  
+
