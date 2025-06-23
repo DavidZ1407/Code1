@@ -86,13 +86,16 @@ const notesData = {
         title: "Task02.4",
         color: "#7edc84",
         items: [
-          "",
-          "",
-          "",
-          "",
+          "Objekt Pile of Date With Attributs tagename attributs do something",
+          "UTF-8 Encoding Tabel for Encoding",
+          "(A) stand link to somewhere (Anker)",
+          "Input dont need closing tag placeholder",
+          "Br should not be used allways use p ",
+          "Legend in field a titel",
+          "In HTML there are 4 Categorize of Typs of Input, Media, Text, Other",
         ]
       },
-        {
+      {
         title: "Task02.5",
         color: "#ff8080",
         items: [
@@ -103,7 +106,7 @@ const notesData = {
         ]
       },
 
-        {
+      {
         title: "Task02.6",
         color: "#EE30A7",
         items: [
@@ -113,7 +116,7 @@ const notesData = {
           "",
         ]
       },
-        {
+      {
         title: "Task02.7",
         color: "#87CEFA",
         items: [
@@ -127,28 +130,28 @@ const notesData = {
     ]
   },
 
-   "Day_3": {
+  "Day_3": {
     topic: "Lesson 3",
     notes: [
       {
         title: "Test",
         color: "#00e0d1",
         items: [
-      "Test 3"
+          "Test 3"
         ]
       },
       {
         title: "Test 3",
         color: "#fcae66",
         items: [
-       "Test 3"
+          "Test 3"
         ]
       },
       {
         title: "bla 3",
         color: "#7edc84",
         items: [
-         "Test 3"
+          "Test 3"
         ]
       },
       {
@@ -156,35 +159,35 @@ const notesData = {
         color: "#ff8080",
         items: [
           "Test 3",
-  
+
         ]
       }
     ]
   },
 
- 
-    "Day_4": {
-    topic: "Lesson 3",
+
+  "Day_4": {
+    topic: "Lesson 4",
     notes: [
       {
         title: "Test",
         color: "#00e0d1",
         items: [
-      "Test 3"
+          "Test 3"
         ]
       },
       {
         title: "Test 3",
         color: "#fcae66",
         items: [
-       "Test 3"
+          "Test 3"
         ]
       },
       {
         title: "bla 3",
         color: "#7edc84",
         items: [
-         "Test 3"
+          "Test 3"
         ]
       },
       {
@@ -192,9 +195,9 @@ const notesData = {
         color: "#ff8080",
         items: [
           "Test 3",
-  
+
         ]
       }
     ]
-  }, 
+  },
 };
