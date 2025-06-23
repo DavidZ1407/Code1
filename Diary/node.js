@@ -3,7 +3,7 @@ const notesData = {
     topic: "Lesson 1",
     notes: [
       {
-        title: "Node.js & JavaScript",
+        title: "Task 1.1",
         color: "#00e0d1",
         items: [
           "Node.js lets you create interactive websites; it is a JavaScript runtime that runs scripts on the server side.",
@@ -12,7 +12,7 @@ const notesData = {
         ]
       },
       {
-        title: "Tools & Editors",
+        title: "Task 1.2",
         color: "#fcae66",
         items: [
           "Visual Studio Code supports debugging, syntax highlighting, intelligent code completion, snippets, refactoring, and embedded Git.",
@@ -23,7 +23,7 @@ const notesData = {
         ]
       },
       {
-        title: "Git Basics",
+        title: "Task 1.3",
         color: "#7edc84",
         items: [
           "Git is a version control system for backups and managing code versions.",
@@ -40,7 +40,7 @@ const notesData = {
         ]
       },
       {
-        title: "Git",
+        title: "Task 1.4",
         color: "#ff8080",
         items: [
           "Git Graph shows branches and commits visually, focusing on relationships.",
@@ -56,7 +56,7 @@ const notesData = {
   },
 
   "Day_2": {
-    topic: "Task02_HTML",
+    topic: "Lesson 2",
     notes: [
       {
         title: "Task 2.1",
@@ -71,16 +71,130 @@ const notesData = {
         ]
       },
 
-       {
+      {
         title: "Task02.2",
         color: "#fcae66",
         items: [
           ".text Pre formatet Text creat a body",
           ".html pre is lost because there is no markuplanguage",
-            "DOM(Document Object Modell)  a hierarchical representation of an HTML or XML document",
-             " .HTML> .HEAD> ./HEAD>.body> ./body> ./HTML> ",
+          "DOM(Document Object Modell)  a hierarchical representation of an HTML or XML document",
+          " .HTML> .HEAD> ./HEAD>.body> ./body> ./HTML> ",
+        ]
+      },
+
+      {
+        title: "Task02.4",
+        color: "#7edc84",
+        items: [
+          "",
+          "",
+          "",
+          "",
+        ]
+      },
+        {
+        title: "Task02.5",
+        color: "#ff8080",
+        items: [
+          "",
+          "",
+          "",
+          "",
+        ]
+      },
+
+        {
+        title: "Task02.6",
+        color: "#EE30A7",
+        items: [
+          "",
+          "",
+          "",
+          "",
+        ]
+      },
+        {
+        title: "Task02.7",
+        color: "#87CEFA",
+        items: [
+          "",
+          "",
+          "",
+          "",
+        ]
+      },
+
+    ]
+  },
+
+   "Day_3": {
+    topic: "Lesson 3",
+    notes: [
+      {
+        title: "Test",
+        color: "#00e0d1",
+        items: [
+      "Test 3"
+        ]
+      },
+      {
+        title: "Test 3",
+        color: "#fcae66",
+        items: [
+       "Test 3"
+        ]
+      },
+      {
+        title: "bla 3",
+        color: "#7edc84",
+        items: [
+         "Test 3"
+        ]
+      },
+      {
+        title: "bla 3",
+        color: "#ff8080",
+        items: [
+          "Test 3",
+  
         ]
       }
     ]
-  }
+  },
+
+ 
+    "Day_4": {
+    topic: "Lesson 3",
+    notes: [
+      {
+        title: "Test",
+        color: "#00e0d1",
+        items: [
+      "Test 3"
+        ]
+      },
+      {
+        title: "Test 3",
+        color: "#fcae66",
+        items: [
+       "Test 3"
+        ]
+      },
+      {
+        title: "bla 3",
+        color: "#7edc84",
+        items: [
+         "Test 3"
+        ]
+      },
+      {
+        title: "bla 3",
+        color: "#ff8080",
+        items: [
+          "Test 3",
+  
+        ]
+      }
+    ]
+  }, 
 };
