@@ -62,12 +62,21 @@ const notesData = {
         title: "Task 2.1",
         color: "#00e0d1",
         items: [
-          "Finde out the meaning of the akronym HTML  Hyper Text Marker Language ",
+          "Finde out the meaning of the akronym HTML  Hyper Text Markup Language Web of Text and Structure",
           "Tome Berners-Lee made HTML to help CERN researchers organize scientific information 1993",
-          "derived from the traditional publishing practice called marking up a manuscript",
-          "syntax refers to the rules the structure and arrangement of words and phrases in a sentence",
-           "semantics deals with the meaning of those words and how they relate to each other",
-            "First Site World Wide Web",
+          "Derived from the traditional publishing practice called marking up a manuscript",
+          "Syntax refers to the rules the structure and arrangement of words and phrases in a sentence",
+          "Semantics deals with the meaning of those words and how they relate to each other",
+          "First Site World Wide Web",
+        ]
+      },
+
+       {
+        title: "Task02.02",
+        color: "#fcae66",
+        items: [
+          "bla",
+      
         ]
       }
     ]
