@@ -72,13 +72,13 @@ const notesData = {
       },
 
        {
-        title: "Task02.02",
+        title: "Task02.2",
         color: "#fcae66",
         items: [
           ".text Pre formatet Text creat a body",
           ".html pre is lost because there is no markuplanguage",
             "DOM(Document Object Modell)  a hierarchical representation of an HTML or XML document",
-             "<HTML><HEAD></HEAD><body></body></HTML>",
+             " .HTML> .HEAD> ./HEAD>.body> ./body> ./HTML> ",
         ]
       }
     ]
