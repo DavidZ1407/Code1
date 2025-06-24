@@ -102,28 +102,40 @@ const notesData = {
     topic: "Lesson 3",
     notes: [
       {
-        title: "Test",
+        title: "Task3.1",
         color: "#00e0d1",
         items: [
-          "Test 3"
+          "Cascading Style Sheets, Cascade means small step small waterfall",
+            "Class with . can be used to identify more than one",
+            "ID with # be used to identify one element",
+            "Root with : can be used to change the whole document",
+              "Tag example html can be used to change only html tag",
         ]
       },
       {
-        title: "Test 3",
+        title: "Task3.2",
         color: "#fcae66",
         items: [
           "Test 3"
         ]
       },
       {
-        title: "bla 3",
+        title: "Task3.3",
         color: "#7edc84",
         items: [
           "Test 3"
         ]
       },
       {
-        title: "bla 3",
+        title: "Task3.4",
+        color: "#ff8080",
+        items: [
+          "Test 3",
+
+        ]
+      },
+       {
+        title: "Task3.5",
         color: "#ff8080",
         items: [
           "Test 3",
