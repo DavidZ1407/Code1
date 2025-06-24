@@ -102,46 +102,17 @@ const notesData = {
     topic: "Lesson 3",
     notes: [
       {
-        title: "Task3.1",
+        title: "Task3",
         color: "#00e0d1",
         items: [
           "Cascading Style Sheets, Cascade means styling in Hierarchy",
           "Class with . can be used to identify more than one",
           "ID with # be used to identify one element",
           "Root with : can be used to change the whole document",
-          "Selecter example html can be used to change only html tag",
+          "Inline & internal never write in html ",
+          "Always wirte in external",
         ]
       },
-      {
-        title: "Task3.2",
-        color: "#fcae66",
-        items: [
-          "Test 3"
-        ]
-      },
-      {
-        title: "Task3.3",
-        color: "#7edc84",
-        items: [
-          "Test 3"
-        ]
-      },
-      {
-        title: "Task3.4",
-        color: "#ff8080",
-        items: [
-          "Test 3",
-
-        ]
-      },
-      {
-        title: "Task3.5",
-        color: "#ff8080",
-        items: [
-          "Test 3",
-
-        ]
-      }
     ]
   },
 
