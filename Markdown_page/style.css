@@ -257,3 +257,27 @@ a:hover {
         filter: drop-shadow(0 0 10px #ff33ff);
     }
 }
+
+/* ============================= */
+/* Responsive styles for small screens */
+/* ============================= */
+@media (max-width: 768px) {
+  html {
+     padding: 3%;
+    margin: 3%;
+  }
+   .heading {
+    font-size: 3rem;
+  }
+}
+
+@media (max-width: 425px) {
+  html {
+     padding: 5%;
+    margin: 5%;
+  }
+   .heading {
+    font-size: 2rem;
+  }
+}
+
