@@ -19,5 +19,5 @@ This is an overview page for the **Code1 module**.
 
 👉 [Text Adventure](https://th3d0c0.github.io/Code1/TextAdventure/TextAdventureStart.html)  
 
-👉 [Text Adventure Flowchart](https://th3d0c0.github.io/Code1/TextAdventure/TextAdventureStart.html)  
+👉 [Text Adventure Flowchart](https://github.com/Th3D0c0/Code1/blob/TextAdventure/TextAdventure/Images/TextAdventureFlowChart.png)  
 
