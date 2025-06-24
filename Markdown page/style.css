@@ -1,15 +1,18 @@
+/* ============================= */
+/* Root variables and global styles */
+/* ============================= */
 :root {
     --main-color: #3399ff;
     --text-color: #ffffff;
     --bg-color: #121212;
-    --pulse-color: #00ffe7;
-}
+    --typing-name: #00f0ff;
+    --typing-description: #ff6ec7;
+    --typing-notes: #ff0040;
+    --typing-github: #ae00ff;
+    --link-color: #4c6ef5;    
+    --link-pulse: #6c8eff;      
 
-html {
-    font-size: 60%;
-    overflow-x: hidden;
 }
-
 
 body {
     margin: 0;
@@ -18,54 +21,239 @@ body {
     color: var(--text-color);
 }
 
-div {
+/* ============================= */
+/* Layout containers */
+/* ============================= */
+.container_diary {
     display: flex;
     flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    padding: 5rem 2rem;
+    gap: 5rem;
+    width: 100%;
+    max-width: 800px;
+    margin: 0 auto;
 }
 
-
-
-html {
-    font-size: 60%;
-    overflow-x: hidden;
-}
-
-
-h1,
-h2,
-h3,
-h4,
-h5,
-h6,
-p {
+/* ============================= */
+/* Heading styles */
+/* ============================= */
+.heading {
     font-size: 4rem;
-    margin: 1rem 0;
-    font-weight: 700;
-    line-height: 1.3;
-}
-
-.titel{
+    text-align: center;
     color: var(--main-color);
+    text-shadow: 0 0 25px var(--main-color);
 }
 
-.diary_box {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  padding: 5rem 2rem;
+/* ============================= */
+/* Note box styles */
+/* ============================= */
+.col_box {
+    border-radius: 1em;
+    background-color: #1e1e1e;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+    padding: 2rem;
+    min-height: 200px;
+    
+    animation: glow-box 3s ease-in-out infinite;
 }
 
-.container_diary {
-  display: flex;
-  flex-direction: column;
-  gap: 5rem;
-  width: 100%;
-  max-width: 800px;
-  margin: 0 auto;
+@keyframes glow-box {
+    0%, 100% {
+        box-shadow: 0 0 15px var(--typing-name), 0 0 30px var(--typing-name);
+    }
+    50% {
+        box-shadow: 0 0 25px var(--typing-name), 0 0 50px var(--typing-name);
+    }
+}
+
+/* ============================= */
+/* Overlay title and text styles */
+/* ============================= */
+.overlay_title {
+    font-size: 2rem;
+    color: var(--main-color);
+    font-weight: bold;
+    margin-bottom: 1rem;
+    white-space: nowrap;
+}
+
+.overlay_subtext {
+    font-size: 1.4rem;
+    opacity: 0.9;
+    line-height: 1.6;
+}
+
+/* ============================= */
+/* Link Styles */
+/* ============================= */
+a {
+      color: var(--link-color);
+    text-decoration: none;
+    font-weight: bold;
+    transition: all 0.3s ease;
+    animation: pulse 3s infinite;
+}
+
+
+a:hover {
+    color: var(--pulse-color);
+    transform: scale(1.03);
+    text-shadow:
+        0 0 6px var(--link-pulse),
+        0 0 12px var(--link-pulse);
+    animation: none;
+}
+
+@keyframes pulse {
+
+    0%,
+    100% {
+        text-shadow:
+            0 0 3px var(--link-color);
+           
+    }
+
+    50% {
+        text-shadow:
+            0 0 6px var(--link-pulse);
+          
+    }
+}
+
+/* ============================= */
+/* Typing Animation Styles */
+/* ============================= */
+.typing-name,
+.typing-description,
+.typing-notes,
+.typing-github {
+    display: inline-block;
+    overflow: hidden;
+    white-space: nowrap;
+    width: 0;
+    animation: typing 3s infinite alternate;
+}
+
+/* ============================= */
+/* Individual Typing & Cursor Styles */
+/* ============================= */
+.typing-name {
+    --width: 6ch;
+    --steps: 6;
+    width: var(--width);
+    border-right: 2px solid var(--typing-name);
+    color: var(--typing-name);
+    animation: typing 3s infinite alternate, cursor-blink-name 0.7s step-end infinite;
+}
+
+.typing-description {
+    --width: 11ch;
+    --steps: 11;
+    width: var(--width);
+    border-right: 2px solid var(--typing-description);
+    color: var(--typing-description);
+    animation: typing 3s infinite alternate, cursor-blink-description 0.7s step-end infinite;
+}
+
+.typing-notes {
+    --width: 9ch;
+    --steps: 9;
+    width: var(--width);
+    border-right: 2px solid var(--typing-notes);
+    color: var(--typing-notes);
+    animation: typing 3s infinite alternate, cursor-blink-notes 0.7s step-end infinite;
+}
+
+.typing-github {
+    --width: 16ch;
+    --steps: 16;
+    width: var(--width);
+    border-right: 2px solid var(--typing-github);
+    color: var(--typing-github);
+    animation: typing 3s infinite alternate, cursor-blink-github 0.7s step-end infinite;
+}
+
+/* ============================= */
+/* Keyframes Typing & Cursor Styles */
+/* ============================= */
+@keyframes typing {
+    from {
+        width: 0;
+    }
+
+    to {
+        width: var(--width);
+    }
+}
+
+@keyframes cursor-blink-name {
+
+    0%,
+    100% {
+        border-color: var(--typing-name);
+    }
+
+    50% {
+        border-color: transparent;
+    }
+}
+
+@keyframes cursor-blink-description {
+
+    0%,
+    100% {
+        border-color: var(--typing-description);
+    }
+
+    50% {
+        border-color: transparent;
+    }
+}
+
+@keyframes cursor-blink-notes {
+
+    0%,
+    100% {
+        border-color: var(--typing-notes);
+    }
+
+    50% {
+        border-color: transparent;
+    }
+}
+
+@keyframes cursor-blink-github {
+
+    0%,
+    100% {
+        border-color: var(--typing-github);
+    }
+
+    50% {
+        border-color: transparent;
+    }
+}
+
+/* ============================= */
+/* Github Styles, Keyframe */
+/* ============================= */
+
+.github-inline-icon {
+    display: inline-block;
+    color: #ae00ff; 
+    margin: 1rem 0;
+    animation: pulse-github 2s infinite ease-in-out;
+    transition: transform 0.3s ease;
+}
+
+.github-inline-icon:hover {
+    transform: scale(1.1);
+}
+
+@keyframes pulse-github {
+    0%, 100% {
+        filter: drop-shadow(0 0 2px #ae00ff);
+    }
+    50% {
+        filter: drop-shadow(0 0 10px #ff33ff);
+    }
 }
