@@ -95,38 +95,6 @@ const notesData = {
           "In HTML there are 4 Categorize of Typs of Input, Media, Text, Other",
         ]
       },
-      {
-        title: "Task02.5",
-        color: "#ff8080",
-        items: [
-          "",
-          "",
-          "",
-          "",
-        ]
-      },
-
-      {
-        title: "Task02.6",
-        color: "#EE30A7",
-        items: [
-          "",
-          "",
-          "",
-          "",
-        ]
-      },
-      {
-        title: "Task02.7",
-        color: "#87CEFA",
-        items: [
-          "",
-          "",
-          "",
-          "",
-        ]
-      },
-
     ]
   },
 
