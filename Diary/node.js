@@ -121,34 +121,136 @@ const notesData = {
     topic: "Lesson 4",
     notes: [
       {
-        title: "Test",
+        title: "TypScript",
         color: "#00e0d1",
         items: [
-          "Test 3"
+          "Use tools like draw.io for activity diagram, Debugger check source code and debug errors",
+          "Debugger check source code and debug errors",
+          "Use console.log first to check what you write in the code",
+          "The compiler needs a tsconfig.json for configurate file",
+          "activity diagram note 4 typ start, activity, objekt, end",
+          "Check version tsc tsc -v, new config creat tsc --init, after that Terminal build and run ",
+          "esnext refers to latest JsScript version",
+          "String (text), Boolean (true/false), Number(numeric values), Void",
         ]
       },
       {
-        title: "Test 3",
+        title: "Problem-Solving",
         color: "#fcae66",
         items: [
-          "Test 3"
+          "What to do When Encounter an Error 1. Analyze behavior, 2 Gather information, 3 console.log 4. write exactly what are you trying",
+          "Ask tutor after 15min, explain what you did, link live server",
+          "1 commen Problem (forgot compile, Script linked, missing parentheses, wrong folder",
+          "2 Read Error Messages + 3 Use the Debugger + 4 Isolate code + Use console.log",
+          "6 Step Through your code, 7 Rubber Duck Method",
+          "4 Typs of Error Design-time Error, Compile-time Error, Runtime Error, Logical Error",
+          "Preventive Measures follow coding guidelines, small changes to run programm",
+          "Git pushes, browser console and log",
         ]
       },
       {
-        title: "bla 3",
+        title: "Complex Data Types",
         color: "#7edc84",
         items: [
-          "Test 3"
+          "Contain primitive values, contain complex types",
+          "Homogenous Structures number [ ] =[1,2,3]",
+          "Heterogeneous Structures Elements can be of different types, Example: an object",
+          "Indices start at [0], Key-Value [zahl]",
+          "TypScript is struckture, JS inline"
         ]
       },
       {
-        title: "bla 3",
+        title: "Funktion",
         color: "#ff8080",
         items: [
-          "Test 3",
-
+          "name, list of parameters(inputs),body (code to run), Optionally return value",
+          "What Functions do Process input, return output, can be called from other parts of the program",
+          "Type Annotations for Parameter return, no function overloading by signature, Early return, Coding Style",
+          "Object as Associative Arrays with Methods, Objects in JS is primitive typs",
+          "name, list of parameters(inputs),body (code to run), Optionally return value",
+          "Primitive (number,boolean, string)  vs Complex Type (objects or arrays) ",
+           "Forgetting that complex types are referenced and not copied by value often leads to bugs",
         ]
       }
     ]
   },
-};
+
+
+ "Day_5": {
+    topic: "Lesson 5",
+    notes: [
+      {
+        title: "Task 5.1",
+        color: "#00e0d1",
+        items: []
+      },
+      {
+        title: "Task 5.2",
+        color: "#fcae66",
+        items: []
+      },
+      {
+        title: "Task 5.3",
+        color: "#7edc84",
+        items: []
+      },
+      {
+        title: "Task 5.4",
+        color: "#ff8080",
+        items: []
+      }
+    ]
+  },
+
+  "Day_6": {
+    topic: "Lesson 6",
+    notes: [
+      {
+        title: "Task 6.1",
+        color: "#00e0d1",
+        items: []
+      },
+      {
+        title: "Task 6.2",
+        color: "#fcae66",
+        items: []
+      },
+      {
+        title: "Task 6.3",
+        color: "#7edc84",
+        items: []
+      },
+      {
+        title: "Task 6.4",
+        color: "#ff8080",
+        items: []
+      }
+    ]
+  },
+
+  "Day_7": {
+    topic: "Lesson 7",
+    notes: [
+      {
+        title: "Task 7.1",
+        color: "#00e0d1",
+        items: []
+      },
+      {
+        title: "Task 7.2",
+        color: "#fcae66",
+        items: []
+      },
+      {
+        title: "Task 7.3",
+        color: "#7edc84",
+        items: []
+      },
+      {
+        title: "Task 7.4",
+        color: "#ff8080",
+        items: []
+      }
+    ]
+  }
+  };
