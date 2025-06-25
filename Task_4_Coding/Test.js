@@ -26,10 +26,17 @@
 // console.log(isDivisible(4, 3)); // false
 // console.log(isDivisible(4, 2)); // true
 // console.log(isDivisible(10, 0)); // Fehler-Message und false
-let v1 = 10;
-let v2 = v1; // v2 bekommt den Wert von v1 kopiert
-// Wert von v1 ändern
-v1 = 20;
-// Ausgabe beider Variablen
-console.log("v1:", v1); // 20
-console.log("v2:", v2); // 10
+// let v1 = 10;
+// let v2 = v1;  // v2 bekommt den Wert von v1 kopiert
+// // Wert von v1 ändern
+// v1 = 20;
+// // Ausgabe beider Variablen
+// console.log("v1:", v1); // 20
+// console.log("v2:", v2); // 10
+let z0 = 4;
+let z1 = 7;
+let z2 = 5;
+let z3 = 3;
+let result;
+result = z0 ^ z1 ^ z2 ^ z3;
+console.log(result);
