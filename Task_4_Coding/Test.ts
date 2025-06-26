@@ -1,12 +1,14 @@
-// console.log("Hello World");
-// let v= "1";
-// v= v+1;
-// console.log(v)
-// let v: number =1;
-// console.log(v)
+namespace Test {
 
-
-// let greet: string ="Hello";
+    // console.log("Hello World");
+    // let v= "1";
+    // v= v+1;
+    // console.log(v)
+    // let v: number =1;
+    // console.log(v)
+    
+    
+    // let greet: string ="Hello";
 // console.log(greet)
 
 // let a = [7, true, "Hallo"]
@@ -18,8 +20,8 @@
 // let s[4] = [101, 102];
 
 // interface Student {
-//     name: string;
-//     matrikel: number;
+    //     name: string;
+    //     matrikel: number;
 //     grades: {[module: string]: number};
 // }
 // let students: Student[] = [];
@@ -46,15 +48,23 @@
 // console.log("v2:", v2); // 10
 
 
-let z0: number = 4;
-let z1: number = 7;
-let z2: number = 5;
-let z3: number = 3;
-let result: number;
-result = z0 ^ z1^ z2 ^z3;
-console.log(result)
+// let z0: number = 4;
+// let z1: number = 7;
+// let z2: number = 5;
+// let z3: number = 3;
+// let result: number;
+// result = z0 ^ z1^ z2 ^z3;
+// console.log(result)
+
+{
+let x:number=0;
+{
+    // let x:number=1;
+    console.log(x);
+}
+console.log(x);
+}
 
 
 
-
-
+}
