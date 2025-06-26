@@ -169,25 +169,37 @@ const notesData = {
           "Object as Associative Arrays with Methods, Objects in JS is primitive typs",
           "name, list of parameters(inputs),body (code to run), Optionally return value",
           "Primitive (number,boolean, string)  vs Complex Type (objects or arrays) ",
-           "Forgetting that complex types are referenced and not copied by value often leads to bugs",
+          "Forgetting that complex types are referenced and not copied by value often leads to bugs",
         ]
       }
     ]
   },
 
 
- "Day_5": {
+  "Day_5": {
     topic: "Lesson 5",
     notes: [
       {
-        title: "Task 5.1",
+        title: "Task 04.2",
         color: "#00e0d1",
-        items: []
+        items: [
+          "Start note (initial),Action note (rectangle),Object note (rectangle with rounded corners), Decision (diamond shape) End note",
+           "Never use var because it can overwrite variables from other scopes (within curly braces)",
+          "Use namespaces to separate concerns",
+          "A namespace becomes a local variable in JavaScript",
+          "JavaScript doesn't have true namespaces like other languages (e.g., C#). Instead, use objects or modules to simulate them",
+          "Use === to compare both value and type (strict equality)",
+          "break skips the rest of the loop and jumps out of it, alert() shows a text popup in the browser",
+          "Convert a string to a number using Number().",
+          
+        ]
       },
       {
         title: "Task 5.2",
         color: "#fcae66",
-        items: []
+        items: [
+      
+        ]
       },
       {
         title: "Task 5.3",
@@ -253,4 +265,4 @@ const notesData = {
       }
     ]
   }
-  };
+};
