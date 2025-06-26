@@ -56,15 +56,33 @@ namespace Test {
 // result = z0 ^ z1^ z2 ^z3;
 // console.log(result)
 
-{
-let x:number=0;
-{
-    // let x:number=1;
-    console.log(x);
+// {
+// let x:number=0;
+// {
+//     // let x:number=1;
+//     console.log(x);
+// }
+// console.log(x);
+// }
+let x =1;
+// if (x == 1){
+//   console.log("Hellow world")
+//   }
+// else{
+//     console.log("Goodbye")
+// }
+
+switch (x){
+    case 1: {
+        console.log("hello Case 1");
+        break;
+    }
+    case 2: {
+        console.log("Goodbye Case 2");
+        break;
+    }
+    default: {
+        console.log("Hug Default")
+    }
 }
-console.log(x);
-}
-
-
-
 }
