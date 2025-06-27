@@ -190,7 +190,7 @@ a:hover {
 .typing-coding {
     --width: 9ch;
     --steps: 9;
-    font-size: 1.4rem;
+    font-size: 1.6rem;
     border-right: 2px solid var(--typing-notes);
     color: var(--typing-notes);
     animation: typing 3s infinite alternate, cursor-blink-coding 0.7s step-end infinite;
