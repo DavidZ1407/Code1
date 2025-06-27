@@ -23,5 +23,11 @@ This is an overview page for the **Code1 module**.
 
 👉 [Test Code TypScript](https://davidz1407.github.io/Code1/Task_4_Coding)  
 
-👉 [Activity diagram](https://github.com/DavidZ1407/Code1/blob/main/Task_4_Coding/Diagramm.drawio.png)  
+👉 [Activity diagram](https://github.com/DavidZ1407/Code1/blob/main/Task_4_Coding/Diagramm.drawio.png)   
+
+👉 [Use Case Nim](https://github.com/DavidZ1407/Code1/blob/main/Task_4_Coding/Use_Case_Nim.png)  
+
+👉 [Activity diagram Nim](https://github.com/DavidZ1407/Code1/blob/main/Task_4_Coding/activity_diagram_nim.png)  
+
+👉 [Nim TypScript](https://github.com/DavidZ1407/Code1/blob/main/Task_4_Coding/Diagramm.drawio.png) 
 
