@@ -193,23 +193,6 @@ const notesData = {
           "Convert a string to a number using Number().",
           
         ]
-      },
-      {
-        title: "Task 5.2",
-        color: "#fcae66",
-        items: [
-      
-        ]
-      },
-      {
-        title: "Task 5.3",
-        color: "#7edc84",
-        items: []
-      },
-      {
-        title: "Task 5.4",
-        color: "#ff8080",
-        items: []
       }
     ]
   },
