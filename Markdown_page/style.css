@@ -9,8 +9,8 @@
     --typing-description: #ff6ec7;
     --typing-notes: #ff0040;
     --typing-github: #ae00ff;
-    --link-color: #4c6ef5;    
-    --link-pulse: #6c8eff;      
+    --link-color: #4c6ef5;
+    --link-pulse: #6c8eff;
 
 }
 
@@ -52,14 +52,17 @@ body {
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
     padding: 2rem;
     min-height: 200px;
-    
+
     animation: glow-box 3s ease-in-out infinite;
 }
 
 @keyframes glow-box {
-    0%, 100% {
+
+    0%,
+    100% {
         box-shadow: 0 0 15px var(--typing-name), 0 0 30px var(--typing-name);
     }
+
     50% {
         box-shadow: 0 0 25px var(--typing-name), 0 0 50px var(--typing-name);
     }
@@ -86,7 +89,7 @@ body {
 /* Link Styles */
 /* ============================= */
 a {
-      color: var(--link-color);
+    color: var(--link-color);
     text-decoration: none;
     font-weight: bold;
     transition: all 0.3s ease;
@@ -109,13 +112,13 @@ a:hover {
     100% {
         text-shadow:
             0 0 3px var(--link-color);
-           
+
     }
 
     50% {
         text-shadow:
             0 0 6px var(--link-pulse);
-          
+
     }
 }
 
@@ -171,6 +174,31 @@ a:hover {
     color: var(--typing-github);
     animation: typing 3s infinite alternate, cursor-blink-github 0.7s step-end infinite;
 }
+
+.typing-htmlcss {
+    --width: 14ch;
+    --steps: 14;
+    font-size: 1.4rem;
+    border-right: 2px solid var(--typing-description);
+    color: var(--typing-description);
+    animation: typing 3s infinite alternate, cursor-blink-htmlcss 0.7s step-end infinite;
+    display: inline-block;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+.typing-coding {
+    --width: 9ch;
+    --steps: 9;
+    font-size: 1.4rem;
+    border-right: 2px solid var(--typing-notes);
+    color: var(--typing-notes);
+    animation: typing 3s infinite alternate, cursor-blink-coding 0.7s step-end infinite;
+    display: inline-block;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
 
 /* ============================= */
 /* Keyframes Typing & Cursor Styles */
@@ -233,13 +261,39 @@ a:hover {
     }
 }
 
+
+@keyframes cursor-blink-htmlcss {
+
+    0%,
+    100% {
+        border-color: var(--typing-description);
+    }
+
+    50% {
+        border-color: transparent;
+    }
+}
+
+
+@keyframes cursor-blink-coding {
+
+    0%,
+    100% {
+        border-color: var(--typing-notes);
+    }
+
+    50% {
+        border-color: transparent;
+    }
+}
+
 /* ============================= */
 /* Github Styles, Keyframe */
 /* ============================= */
 
 .github-inline-icon {
     display: inline-block;
-    color: #ae00ff; 
+    color: #ae00ff;
     margin: 1rem 0;
     animation: pulse-github 2s infinite ease-in-out;
     transition: transform 0.3s ease;
@@ -250,9 +304,12 @@ a:hover {
 }
 
 @keyframes pulse-github {
-    0%, 100% {
+
+    0%,
+    100% {
         filter: drop-shadow(0 0 2px #ae00ff);
     }
+
     50% {
         filter: drop-shadow(0 0 10px #ff33ff);
     }
@@ -262,22 +319,23 @@ a:hover {
 /* Responsive styles for small screens */
 /* ============================= */
 @media (max-width: 768px) {
-  html {
-     padding: 3%;
-    margin: 3%;
-  }
-   .heading {
-    font-size: 3rem;
-  }
+    html {
+        padding: 3%;
+        margin: 3%;
+    }
+
+    .heading {
+        font-size: 3rem;
+    }
 }
 
 @media (max-width: 425px) {
-  html {
-     padding: 5%;
-    margin: 5%;
-  }
-   .heading {
-    font-size: 2rem;
-  }
-}
+    html {
+        padding: 5%;
+        margin: 5%;
+    }
 
+    .heading {
+        font-size: 2rem;
+    }
+}
