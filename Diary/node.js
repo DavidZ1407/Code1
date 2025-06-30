@@ -180,18 +180,19 @@ const notesData = {
     topic: "Lesson 5",
     notes: [
       {
-        title: "Task 04.2",
+        title: "Task 04",
         color: "#00e0d1",
         items: [
           "Start note (initial),Action note (rectangle),Object note (rectangle with rounded corners), Decision (diamond shape) End note",
-           "Never use var because it can overwrite variables from other scopes (within curly braces)",
+          "Never use var because it can overwrite variables from other scopes (within curly braces)",
           "Use namespaces to separate concerns",
           "A namespace becomes a local variable in JavaScript",
           "JavaScript doesn't have true namespaces like other languages (e.g., C#). Instead, use objects or modules to simulate them",
           "Use === to compare both value and type (strict equality)",
           "break skips the rest of the loop and jumps out of it, alert() shows a text popup in the browser",
-          "Convert a string to a number using Number().",
-          
+          "Convert a string to a number using Number() or parsseInt() ",
+          "Hover for quick fix , F2 rename Symbole",
+          "Komplex data type pile of  information",
         ]
       }
     ]
