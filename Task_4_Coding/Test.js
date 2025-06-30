@@ -35,13 +35,13 @@ var Test;
     // // Ausgabe beider Variablen
     // console.log("v1:", v1); // 20
     // console.log("v2:", v2); // 10
-    // let z0: number = 4;
-    // let z1: number = 7;
-    // let z2: number = 5;
-    // let z3: number = 3;
-    // let result: number;
-    // result = z0 ^ z1^ z2 ^z3;
-    // console.log(result)
+    let z0 = 4;
+    let z1 = 7;
+    let z2 = 5;
+    let z3 = 3;
+    let result;
+    result = z0 ^ z1 ^ z2 ^ z3;
+    console.log(result);
     // {
     // let x:number=0;
     // {
