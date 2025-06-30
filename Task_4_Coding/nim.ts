@@ -1,75 +1,55 @@
 namespace Nim {
 
-    let a: number;
-    let b: number;
-    let c: number;
-    let d: number;
-
+    let rows: number[] = [];
     let Player: boolean = false;
 
-    a = Number(prompt("Fill Row 1")) || 0;
-    b = Number(prompt("Fill Row 2")) || 0;
-    c = Number(prompt("Fill Row 3")) || 0;
-    d = Number(prompt("Fill Row 4")) || 0;
+    for (let i = 0; i < 4; i++) {
+        let value = Number(prompt(`Fill Row ${i + 1}`)) || 0;
+        rows.push(value);
+    }
 
-    gameLoop(a, b, c, d, Player);
+    gameLoop(rows, Player);
 
-    function gameLoop(_a: number, _b: number, _c: number, _d: number, _Player: boolean) {
-        displayState(_a, _b, _c, _d, _Player);
+    function gameLoop(_rows: number[], _Player: boolean) {
+        displayState(_rows, _Player);
 
-        let CurrentSelectedRow: number = getRow(_a, _b, _c, _d);
-        let available: number;
+        let selectedRow: number = getRow(_rows);
+        let available = _rows[selectedRow - 1];
 
-        switch (CurrentSelectedRow) {
-            case 1: available = _a; break;
-            case 2: available = _b; break;
-            case 3: available = _c; break;
-            case 4: available = _d; break;
-            default: available = 0;
-        }
+        let lightsToRemove: number = promptNumberUserInput(available, selectedRow);
 
-        let lightsToRemove: number = promptNumberUserInput(available, CurrentSelectedRow);
+        _rows[selectedRow - 1] -= lightsToRemove;
 
-        switch (CurrentSelectedRow) {
-            case 1: _a -= lightsToRemove; break;
-            case 2: _b -= lightsToRemove; break;
-            case 3: _c -= lightsToRemove; break;
-            case 4: _d -= lightsToRemove; break;
-        }
-
-
-        if (checkWinner(_a, _b, _c, _d)) {
+        if (checkWinner(_rows)) {
             console.log(_Player ? "Player 2 has won the game" : "Player 1 has won the game");
             return;
         } else {
-            gameLoop(_a, _b, _c, _d, !_Player);
+            gameLoop(_rows, !_Player);
         }
     }
 
-    function checkWinner(_a: number, _b: number, _c: number, _d: number): boolean {
-        return (_a + _b + _c + _d) === 0;
+    function checkWinner(rows: number[]): boolean {
+        return rows.reduce((sum, val) => sum + val, 0) === 0;
     }
 
-    function getRow(_a: number, _b: number, _c: number, _d: number): number {
+    function getRow(rows: number[]): number {
         let userRowSelection: number = promptRowUserInput();
 
-        console.log("Selected row:", userRowSelection);
-
-        switch (userRowSelection) {
-            case 1: console.log("Currently Selected Row 1"); break;
-            case 2: console.log("Currently Selected Row 2"); break;
-            case 3: console.log("Currently Selected Row 3"); break;
-            case 4: console.log("Currently Selected Row 4"); break;
+        if (rows[userRowSelection - 1] === 0) {
+            console.log(`Row ${userRowSelection} is empty. Please select a different row.`);
+            return getRow(rows);
         }
+
+        console.log("Selected row:", userRowSelection);
         return userRowSelection;
     }
 
-    function promptNumberUserInput(available: number, _CurrentSelectedRow: number): number {
-        let input: number = Number(prompt("How many lights to remove on line " + _CurrentSelectedRow));
+    function promptNumberUserInput(available: number, currentRow: number): number {
+        let input: number = Number(prompt(`How many lights to remove on line ${currentRow}`));
 
         if (isNaN(input) || input <= 0 || input > available) {
-            console.log("Ungültiger Zug! Gib eine gültige Anzahl zwischen 1 und " + available + " ein.");
-            return promptNumberUserInput(available, _CurrentSelectedRow);
+            console.log(`Ungültiger Zug! Gib eine gültige Anzahl zwischen 1 und ${available} ein.`);
+            return promptNumberUserInput(available, currentRow);
         }
 
         return input;
@@ -86,21 +66,16 @@ namespace Nim {
         }
     }
 
-    function checkGameActionInput(_Input: number): boolean {
-        return _Input >= 1 && _Input <= 4;
+    function checkGameActionInput(input: number): boolean {
+        return input >= 1 && input <= 4;
     }
 
-    function displayState(_a: number, _b: number, _c: number, _d: number, _Player: boolean) {
-        console.log("Current Player: --Player " + (_Player ? "2" : "1") + "--");
+    function displayState(rows: number[], player: boolean) {
+        console.log(`Current Player: --Player ${player ? "2" : "1"}--`);
         console.log("_________________________________________________________");
-        console.log("Current Row 1: " + _a);
-        console.log("_________________________________________________________");
-        console.log("Current Row 2: " + _b);
-        console.log("_________________________________________________________");
-        console.log("Current Row 3: " + _c);
-        console.log("_________________________________________________________");
-        console.log("Current Row 4: " + _d);
-        console.log("_________________________________________________________");
+        rows.forEach((count, index) => {
+            console.log(`Current Row ${index + 1}: ${count}`);
+            console.log("_________________________________________________________");
+        });
     }
-
 }
