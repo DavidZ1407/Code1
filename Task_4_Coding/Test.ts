@@ -84,5 +84,46 @@ namespace Test {
     //     default: {
     //         console.log("Hug Default")
     //     }
-   
+//     let v2 =["tree","test"]
+//    let v1=v2
+// ;
+
+//    v2=v1;
+//    console.log(v2)
+
+//    let i: number = 0;
+// while (i < 10) {
+//   console.log(i);
+//   i++;
+// }
+
+// let i: number = 0;
+// do {
+//   console.log(i);
+//   i++;
+// } while (i < 10);
+
+// for (let i: number = 0; i < 10; i++)
+//   console.log(i);
+
+// let a: number = 10;
+// let b: number = 5;
+// for (let i: number = b; i > 1; i/=2) {
+//   if (i == 3)
+//     continue;
+//   if (i == a)
+//     break;
+//   console.log(i);
+// }
+// let o = {x:1, y:2};
+// for (let key in o) {
+//   console.log(o[key]);
+// }
+
+let o = {x:1, y:2};
+for (let value in o) {
+  console.log();
+}
+
+
 }
