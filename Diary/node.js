@@ -93,6 +93,8 @@ const notesData = {
           "Br should not be used allways use p ",
           "Legend in field a titel",
           "In HTML there are 4 Categorize of Typs of Input, Media, Text, Other",
+          "use export for other files, for loop you need an i(index), changes and output, .length can acces all array",
+          "primitive typ copys array, complex changes",
         ]
       },
     ]
