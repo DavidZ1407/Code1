@@ -211,6 +211,18 @@ a:hover {
     white-space: nowrap;
 }
 
+.typing-roll {
+    --width: 10ch;
+    --steps: 10;
+    font-size: 1.6rem;
+    border-right: 2px solid var(--typing-notes);
+    color: var(--typing-notes);
+    animation: typing 3s infinite alternate, cursor-blink-coding 0.7s step-end infinite;
+    display: inline-block;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
 
 
 

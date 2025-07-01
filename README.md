@@ -41,3 +41,7 @@ This is an overview page for the **Code1 module**.
 
 👉 [Quiz HTML](https://davidz1407.github.io/Code1/Task_4_Coding/Quiz/quiz.html) 
 
+👉 [Dice diagram](https://github.com/DavidZ1407/Code1/blob/main/Task_4_Coding/dice_roll/diagramm_dice.png) 
+
+👉 [Dice HTML](https://davidz1407.github.io/Code1/Task_4_Coding/dice_roll/dice.html) 
+
