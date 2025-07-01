@@ -35,5 +35,9 @@ This is an overview page for the **Code1 module**.
 
 👉 [Activity diagram Nim](https://github.com/DavidZ1407/Code1/blob/main/Task_4_Coding/activity_diagram_nim.png)  
 
-👉 [Nim TypScript](https://davidz1407.github.io/Code1/Task_4_Coding/nim.html) 
+👉 [Nim HTML](https://davidz1407.github.io/Code1/Task_4_Coding/nim.html) 
+
+👉 [Quiz diagram](https://github.com/DavidZ1407/Code1/blob/main/Task_4_Coding/Quiz/diagramm_quiz.png) 
+
+👉 [Quiz HTML](https://davidz1407.github.io/Code1/Task_4_Coding/Quiz/quiz.html) 
 
