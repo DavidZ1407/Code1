@@ -179,7 +179,7 @@ const notesData = {
 
 
   "Day_5": {
-    topic: "Lesson 5",
+    topic: "Task 4",
     notes: [
       {
         title: "Task 04",
@@ -193,7 +193,7 @@ const notesData = {
           "Use === to compare both value and type (strict equality)",
           "break skips the rest of the loop and jumps out of it, alert() shows a text popup in the browser",
           "Convert a string to a number using Number() or parsseInt() ",
-          "Hover for quick fix , F2 rename Symbole",
+          "Hover for quick fix , F2 rename Symbole, dry (do not reapet code)",
           "Komplex data type pile of  information",
         ]
       }
