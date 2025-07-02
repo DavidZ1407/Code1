@@ -114,14 +114,14 @@ Median (simple):   ${median}
 Individual Rolls:
 ${individualRolls}
 `;
-
+        console.log(resultText);
         alert(resultText);
     }
 
     function askRestart(): void {
         const input = prompt("Would you like to roll again? (y/n)")?.toLowerCase();
         if (input === "y") {
-            
+
             currentDieData = { d4: 0, d6: 0, d8: 0, d10: 0, d12: 0, d20: 0 };
             rollResults = { d4: [], d6: [], d8: [], d10: [], d12: [], d20: [] };
             rollSum = 0;

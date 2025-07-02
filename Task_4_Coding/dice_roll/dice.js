@@ -102,6 +102,7 @@ Median (simple):   ${DiceRoll.median}
 Individual Rolls:
 ${individualRolls}
 `;
+        console.log(resultText);
         alert(resultText);
     }
     DiceRoll.showResults = showResults;
