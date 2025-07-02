@@ -69,6 +69,7 @@ var DiceRoll;
         }
         calculateStats();
         showResults();
+        askRestart();
     }
     DiceRoll.startSimulation = startSimulation;
     function rollDie(max) {
@@ -84,19 +85,45 @@ var DiceRoll;
         DiceRoll.median = (DiceRoll.minimal + DiceRoll.maximal) / 2;
     }
     function showResults() {
-        console.log(`
-+---------------------------------+
-|          ROLL RESULTS            |
-+---------------------------------+
-| Total Sum:        | ${DiceRoll.rollSum.toString().padEnd(14)} |
-| Average Roll:     | ${DiceRoll.rollAverage.toFixed(2).padEnd(14)} |
-| Minimal Roll:     | ${DiceRoll.minimal.toString().padEnd(14)} |
-| Maximal Roll:     | ${DiceRoll.maximal.toString().padEnd(14)} |
-| Median (simplified): | ${DiceRoll.median.toString().padEnd(14)} |
-+---------------------------------+
-`);
-        console.log("Individual rolls:", DiceRoll.rollResults);
+        const individualRolls = Object.entries(DiceRoll.rollResults)
+            .map(([die, rolls]) => `${die}: ${rolls.join(", ")}`)
+            .filter(line => !line.endsWith(": "))
+            .join("\n");
+        const resultText = `
++-----------------------------+
+|        ROLL RESULTS         |
++-----------------------------+
+Total Sum:         ${DiceRoll.rollSum}
+Average Roll:      ${DiceRoll.rollAverage.toFixed(2)}
+Minimal Roll:      ${DiceRoll.minimal}
+Maximal Roll:      ${DiceRoll.maximal}
+Median (simple):   ${DiceRoll.median}
+
+Individual Rolls:
+${individualRolls}
+`;
+        alert(resultText);
     }
     DiceRoll.showResults = showResults;
+    function askRestart() {
+        var _a;
+        const input = (_a = prompt("Would you like to roll again? (y/n)")) === null || _a === void 0 ? void 0 : _a.toLowerCase();
+        if (input === "y") {
+            DiceRoll.currentDieData = { d4: 0, d6: 0, d8: 0, d10: 0, d12: 0, d20: 0 };
+            DiceRoll.rollResults = { d4: [], d6: [], d8: [], d10: [], d12: [], d20: [] };
+            DiceRoll.rollSum = 0;
+            DiceRoll.rollAverage = 0;
+            DiceRoll.minimal = Infinity;
+            DiceRoll.maximal = -Infinity;
+            DiceRoll.median = 0;
+            selectionLoop();
+        }
+        else if (input === "n") {
+            alert("Thanks for playing!");
+        }
+        else {
+            askRestart();
+        }
+    }
 })(DiceRoll || (DiceRoll = {}));
 //# sourceMappingURL=dice.js.map

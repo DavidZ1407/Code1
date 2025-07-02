@@ -77,6 +77,7 @@ namespace DiceRoll {
 
         calculateStats();
         showResults();
+        askRestart();
     }
 
     function rollDie(max: number): number {
@@ -95,17 +96,45 @@ namespace DiceRoll {
     }
 
     export function showResults(): void {
-        console.log(`
-+---------------------------------+
-|          ROLL RESULTS            |
-+---------------------------------+
-| Total Sum:        | ${rollSum.toString().padEnd(14)} |
-| Average Roll:     | ${rollAverage.toFixed(2).padEnd(14)} |
-| Minimal Roll:     | ${minimal.toString().padEnd(14)} |
-| Maximal Roll:     | ${maximal.toString().padEnd(14)} |
-| Median (simplified): | ${median.toString().padEnd(14)} |
-+---------------------------------+
-`);
-        console.log("Individual rolls:", rollResults);
+        const individualRolls = Object.entries(rollResults)
+            .map(([die, rolls]) => `${die}: ${rolls.join(", ")}`)
+            .filter(line => !line.endsWith(": ")) 
+            .join("\n");
+
+        const resultText = `
++-----------------------------+
+|        ROLL RESULTS         |
++-----------------------------+
+Total Sum:         ${rollSum}
+Average Roll:      ${rollAverage.toFixed(2)}
+Minimal Roll:      ${minimal}
+Maximal Roll:      ${maximal}
+Median (simple):   ${median}
+
+Individual Rolls:
+${individualRolls}
+`;
+
+        alert(resultText);
+    }
+
+    function askRestart(): void {
+        const input = prompt("Would you like to roll again? (y/n)")?.toLowerCase();
+        if (input === "y") {
+            
+            currentDieData = { d4: 0, d6: 0, d8: 0, d10: 0, d12: 0, d20: 0 };
+            rollResults = { d4: [], d6: [], d8: [], d10: [], d12: [], d20: [] };
+            rollSum = 0;
+            rollAverage = 0;
+            minimal = Infinity;
+            maximal = -Infinity;
+            median = 0;
+
+            selectionLoop();
+        } else if (input === "n") {
+            alert("Thanks for playing!");
+        } else {
+            askRestart();
+        }
     }
 }
