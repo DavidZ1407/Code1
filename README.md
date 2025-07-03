@@ -15,7 +15,7 @@ This is an overview page for the **Code1 module**.
 ## 🔗 My GitHub Pages
 📄 You can view my Pages here:  
 
-## 🧱 Text adventure
+## 🧱 HTML & CSS
 
 👉 [Task 2](https://davidz1407.github.io/Code1/Task_2_HTML/Test.html)  
 
@@ -54,7 +54,7 @@ This is an overview page for the **Code1 module**.
 
 👉 [Dice HTML](https://davidz1407.github.io/Code1/Task_4_Coding/dice_roll/dice.html) 
 
-👁️‍🗨️ Event Inspector
+## 👁️‍🗨️ Event Inspector
 
 👉 [Event Inspektor HTML](https://davidz1407.github.io/Code1/Task_4_Coding/Event_Inspector/event_inspector.html) 
 
