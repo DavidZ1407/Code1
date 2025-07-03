@@ -194,24 +194,44 @@ const notesData = {
           "break skips the rest of the loop and jumps out of it, alert() shows a text popup in the browser",
           "Convert a string to a number using Number() or parsseInt() ",
           "Hover for quick fix , F2 rename Symbole, dry (do not reapet code)",
-          "Komplex data type pile of  information",
+          "Komplex data type pile of  information, Singel graph $ format string, Void when no input in function ",
         ]
       }
     ]
   },
 
   "Day_6": {
-    topic: "Lesson 6",
+    topic: "Event",
     notes: [
       {
-        title: "Task 6.1",
+        title: "DOM Manipulations",
         color: "#00e0d1",
-        items: []
+        items: ["You can access and manipulate HTML elements using the DOM (Document Object Model).",
+          "CRUD (Create, Read, Update, Delete), Access an element from the DOM using an array-like indexdocument.body.getElementsByTagName(p)[1].innerHTML.",
+          "Change the content of a specific element by document.body.getElementsByTagName(p)[1].innerText = name;",
+          "document.body.getElementsByTagName(p)[1].parentElement, ",
+          "To remove an element: let child = document.body.getElementsByTagName(p)[1];child.parentElement.removeChild(child);",
+          "To re-add or append a child element to a parent:parent.appendChild(child);",
+          "To create a new element:let baby = document.createElement(p);", 
+          "An element can’t be found, methods like getElementById, querySelector, etc., will return null, meaning there’s no reference (no address in memory).",
+          "document.querySelector()This method selects an element using a CSS-style selector",
+    
+         ]
       },
       {
-        title: "Task 6.2",
+        title: "Event-Handler",
         color: "#fcae66",
-        items: []
+        items: ["What type is target in an event? In the DOM Event model, the type of event.target is EventTarget. That means many different kinds of elements (e.g., buttons, divs, paragraphs) can be event targets.",
+          "An event handler is a function that responds to a specific event, such as a click or key press, Objects from any class that inherits from EventTarget, such as:HTML elements (e.g., HTMLDivElement, HTMLButtonElement)document window",
+          "An event listener waits for an event to occur and then executes the assigned handler function",
+          "An Event in JavaScript is a special object that carries data about what just happened. Examples:Mouse clickKey ,pressTouch ,inputPage, load Data ,transfer completion",
+          "Event has a: .target: The element the event is originally dispatched on (e.g. button, input, link) .type: A string describing the event type, like click, load, change, dragstart",
+          "1.Capture Phase:Event starts at the top (window) and moves down through the DOM to the target element",
+          "2.Target Phase:The event reaches the intended target", 
+          "3.Bubble Phase:The event moves back up from the target toward the root (window), like a bubble.",
+          "Example Window → HTML → Body → Button (target) ← back up (bubble)",
+          "Concept	Visual/Character: Event Object	T-Shirt with info on it, Handler A small wolf that acts ,Listener	Vampire/Wolf that hears , Target The object the event affects"
+        ]
       },
       {
         title: "Task 6.3",
