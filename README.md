@@ -14,6 +14,9 @@ This is an overview page for the **Code1 module**.
 
 ## 🔗 My GitHub Pages
 📄 You can view my Pages here:  
+
+## 🧱 Text adventure
+
 👉 [Task 2](https://davidz1407.github.io/Code1/Task_2_HTML/Test.html)  
 
 👉 [Website Hack](https://davidz1407.github.io/Code1/Task_3_CSS/index.html)  
@@ -31,19 +34,27 @@ This is an overview page for the **Code1 module**.
 
 👉 [Activity diagram](https://github.com/DavidZ1407/Code1/blob/main/Task_4_Coding/Diagramm.drawio.png)   
 
+## 📟 Nim
+
 👉 [Use Case Nim](https://github.com/DavidZ1407/Code1/blob/main/Task_4_Coding/Use_Case_Nim.png)  
 
 👉 [Activity diagram Nim](https://github.com/DavidZ1407/Code1/blob/main/Task_4_Coding/activity_diagram_nim.png)  
 
 👉 [Nim HTML](https://davidz1407.github.io/Code1/Task_4_Coding/nim.html) 
 
+## ❓Quiz
+
 👉 [Quiz diagram](https://github.com/DavidZ1407/Code1/blob/main/Task_4_Coding/Quiz/diagramm_quiz.png) 
 
 👉 [Quiz HTML](https://davidz1407.github.io/Code1/Task_4_Coding/Quiz/quiz.html) 
 
+## 🎲 Dice roll
+
 👉 [Dice diagram](https://github.com/DavidZ1407/Code1/blob/main/Task_4_Coding/dice_roll/diagramm_dice.png) 
 
 👉 [Dice HTML](https://davidz1407.github.io/Code1/Task_4_Coding/dice_roll/dice.html) 
+
+👁️‍🗨️ Event Inspector
 
 👉 [Event Inspektor HTML](https://davidz1407.github.io/Code1/Task_4_Coding/Event_Inspector/event_inspector.html) 
 
