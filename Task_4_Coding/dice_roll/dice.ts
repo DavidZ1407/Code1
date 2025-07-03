@@ -3,19 +3,19 @@ namespace DiceRoll {
     type DieData = Record<DieType, number>;
     type RollStash = Record<DieType, number[]>;
 
-    export let currentDieData: DieData = { d4: 0, d6: 0, d8: 0, d10: 0, d12: 0, d20: 0 };
-    export const maxDieData: DieData = { d4: 4, d6: 6, d8: 8, d10: 10, d12: 12, d20: 20 };
-    export let rollResults: RollStash = { d4: [], d6: [], d8: [], d10: [], d12: [], d20: [] };
+     let currentDieData: DieData = { d4: 0, d6: 0, d8: 0, d10: 0, d12: 0, d20: 0 };
+     const maxDieData: DieData = { d4: 4, d6: 6, d8: 8, d10: 10, d12: 12, d20: 20 };
+     let rollResults: RollStash = { d4: [], d6: [], d8: [], d10: [], d12: [], d20: [] };
 
-    export let rollSum = 0;
-    export let rollAverage = 0;
-    export let minimal = Infinity;
-    export let maximal = -Infinity;
-    export let median = 0;
+     let rollSum = 0;
+ let rollAverage = 0;
+     let minimal = Infinity;
+     let maximal = -Infinity;
+     let median = 0;
 
     selectionLoop();
 
-    export function selectionLoop(): void {
+     function selectionLoop(): void {
         const dieType = selectDieType();
         if (dieType !== "0") {
             const amount = selectDieAmount(dieType as DieType);
@@ -26,7 +26,7 @@ namespace DiceRoll {
         }
     }
 
-    export function selectDieType(): string {
+     function selectDieType(): string {
         const input = prompt(
             "Choose a die type:\n" +
             "(1) d4\n" +
@@ -51,7 +51,7 @@ namespace DiceRoll {
         }
     }
 
-    export function selectDieAmount(dieType: DieType): number {
+     function selectDieAmount(dieType: DieType): number {
         const input = prompt(`How many ${dieType} dice do you want to roll?`);
         const amount = parseInt(input ?? "", 10);
         if (isNaN(amount) || amount < 1) {
@@ -60,11 +60,11 @@ namespace DiceRoll {
         return amount;
     }
 
-    export function saveData(dieType: DieType, amount: number): void {
+     function saveData(dieType: DieType, amount: number): void {
         currentDieData[dieType] += amount;
     }
 
-    export function startSimulation(): void {
+     function startSimulation(): void {
         for (const dieType in currentDieData) {
             const die = dieType as DieType;
             const count = currentDieData[die];
@@ -95,7 +95,7 @@ namespace DiceRoll {
         median = (minimal + maximal) / 2;
     }
 
-    export function showResults(): void {
+     function showResults(): void {
         const individualRolls = Object.entries(rollResults)
             .map(([die, rolls]) => `${die}: ${rolls.join(", ")}`)
             .filter(line => !line.endsWith(": ")) 
