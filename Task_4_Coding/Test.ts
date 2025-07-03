@@ -120,10 +120,34 @@ namespace Test {
 //   console.log(o[key]);
 // }
 
-let o = {x:1, y:2};
-for (let value in o) {
-  console.log();
-}
+// let o = {x:1, y:2};
+// for (let value in o) {
+//   console.log();
+// }
+
+// namespace L02_Load {
+//     document.addEventListener("load", handleLoad);
+
+//     function handleLoad(_event: Event): void {
+//         console.log("Seite vollständig geladen");
+//         console.log(_event);
+//     }
+// }
+
+const someData = { message: "Hallo Welt", count: 42 };
+const someEventTarget = document.body;
+
+someEventTarget.addEventListener("someSpecialType", (e: Event) => {
+    const customEvent = e as CustomEvent;
+    console.log("Event empfangen:", customEvent.detail.someKey);
+});
+
+let event: CustomEvent = new CustomEvent("someSpecialType", {
+    bubbles: true,
+    detail: { someKey: someData }
+});
+
+someEventTarget.dispatchEvent(event);
 
 
 }

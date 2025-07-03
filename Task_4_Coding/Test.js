@@ -99,8 +99,26 @@ var Test;
     // for (let key in o) {
     //   console.log(o[key]);
     // }
-    let o = { x: 1, y: 2 };
-    for (let value in o) {
-        console.log();
-    }
+    // let o = {x:1, y:2};
+    // for (let value in o) {
+    //   console.log();
+    // }
+    // namespace L02_Load {
+    //     document.addEventListener("load", handleLoad);
+    //     function handleLoad(_event: Event): void {
+    //         console.log("Seite vollständig geladen");
+    //         console.log(_event);
+    //     }
+    // }
+    const someData = { message: "Hallo Welt", count: 42 };
+    const someEventTarget = document.body;
+    someEventTarget.addEventListener("someSpecialType", (e) => {
+        const customEvent = e;
+        console.log("Event empfangen:", customEvent.detail.someKey);
+    });
+    let event = new CustomEvent("someSpecialType", {
+        bubbles: true,
+        detail: { someKey: someData }
+    });
+    someEventTarget.dispatchEvent(event);
 })(Test || (Test = {}));
