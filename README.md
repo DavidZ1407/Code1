@@ -58,3 +58,7 @@ This is an overview page for the **Code1 module**.
 
 👉 [Event Inspektor HTML](https://davidz1407.github.io/Code1/Task_4_Coding/Event_Inspector/event_inspector.html) 
 
+## ⚽ Ball Animation
+
+👉 [Ball Animation HTML](https://davidz1407.github.io/Code1/Task_4_Coding/ball_animation/ball.html) 
+
