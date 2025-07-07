@@ -1,27 +1,45 @@
 "use strict";
-// namespace BallAnimation {
-//   const world = {
-//     width: window.innerWidth,
-//     height: window.innerHeight,
-//   };
-const velocity = { x: 1, y: 1 };
-const position = { x: 100, y: 100 };
-let ball;
-window.addEventListener("load", handleLoad);
-function handleLoad(_event) {
-    ball = document.querySelector("span");
-    if (!ball) {
-        console.error("Kein <span> gefunden!");
-        return;
+var BallAnimation;
+(function (BallAnimation) {
+    const balls = [];
+    window.addEventListener("load", handleLoad);
+    function handleLoad(_event) {
+        for (let i = 0; i < 60; i++) {
+            const span = document.createElement("span");
+            document.body.appendChild(span);
+            const ball = {
+                element: span,
+                position: {
+                    x: Math.random() * window.innerWidth,
+                    y: Math.random() * window.innerHeight
+                },
+                velocity: {
+                    x: (Math.random() - 0.5) * 10,
+                    y: (Math.random() - 0.5) * 10
+                }
+            };
+            balls.push(ball);
+        }
+        moveAll();
     }
-    move();
-}
-function move() {
-    if (!ball)
-        return;
-    position.x += velocity.x;
-    position.y += velocity.y;
-    ball.style.transform = `matrix(1, 0, 0, 1, ${position.x}, ${position.y})`;
-    setTimeout(move, 10);
-}
+    function moveAll() {
+        for (const ball of balls) {
+            move(ball);
+        }
+        requestAnimationFrame(moveAll);
+        // setTimeout(moveAll, 60);
+        // setInterval(moveAll, 60);
+    }
+    function move(ball) {
+        ball.position.x += ball.velocity.x;
+        ball.position.y += ball.velocity.y;
+        if (ball.position.x <= 0 || ball.position.x >= window.innerWidth) {
+            ball.velocity.x *= -1;
+        }
+        if (ball.position.y <= 0 || ball.position.y >= window.innerHeight) {
+            ball.velocity.y *= -1;
+        }
+        ball.element.style.transform = `matrix(1, 0, 0, 1, ${ball.position.x}, ${ball.position.y})`;
+    }
+})(BallAnimation || (BallAnimation = {}));
 //# sourceMappingURL=ball.js.map

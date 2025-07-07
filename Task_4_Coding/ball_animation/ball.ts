@@ -1,71 +1,61 @@
-// namespace BallAnimation {
-//   const world = {
-//     width: window.innerWidth,
-//     height: window.innerHeight,
-//   };
-
-//   let startPositionX: number = 50;
-//   let startPositionY: number = 50;
-
-//   let currentPositionX: number = startPositionX;
-//   let currentPositionY: number = startPositionY;
-
-//   let velocityX: number = 2;
-//   let velocityY: number = 2;
-
-//   const ballSize: number = 50;
-
-//   setLocation();
-
-//   function setLocation() {
-//     const span = document.getElementById("span");
-//     if (!span) return;
-
-//     currentPositionX += velocityX;
-//     currentPositionY += velocityY;
-
-//     velocityX = checkCollision(currentPositionX, velocityX, ballSize, world.width);
-//     velocityY = checkCollision(currentPositionY, velocityY, ballSize, world.height);
-
-//     span.style.left = currentPositionX + "px";
-//     span.style.top = currentPositionY + "px";
-
-//     requestAnimationFrame(setLocation);
-//   }
-
-//   function checkCollision(position: number, velocity: number, size: number, limit: number): number {
-//     if (position <= 0 || position + size >= limit) {
-//       return -velocity;
-//     }
-//     return velocity;
-//   }
-// }
 namespace BallAnimation {
-type Vector = { x: number; y: number };
+  type Vector = { x: number; y: number };
+  type Ball = {
+    element: HTMLSpanElement;
+    position: Vector;
+    velocity: Vector;
+  };
 
-const velocity: Vector = { x: 1, y: 1 };
-const position: Vector = { x: 100, y: 100 };
-let ball: HTMLSpanElement | null;
+  const balls: Ball[] = [];
+  
 
-window.addEventListener("load", handleLoad);
+  window.addEventListener("load", handleLoad);
 
-function handleLoad(_event: Event): void {
-  ball = document.querySelector("span");
-  if (!ball) {
-    return;
+  function handleLoad(_event: Event): void {
+    for (let i = 0; i < 60; i++) {
+      const span = document.createElement("span");
+      document.body.appendChild(span);
+
+      const ball: Ball = {
+        element: span,
+        position: {
+          x: Math.random() * window.innerWidth,
+          y: Math.random() * window.innerHeight
+        },
+        velocity: {
+          x: (Math.random() - 0.5) * 10,
+          y: (Math.random() - 0.5) * 10
+        }
+      };
+
+      balls.push(ball);
+    }
+
+    moveAll();
   }
-  move();
+
+  function moveAll(): void {
+    for (const ball of balls) {
+      move(ball);
+    }
+
+    requestAnimationFrame(moveAll);
+    // setTimeout(moveAll, 60);
+    // setInterval(moveAll, 60);
+  }
+
+  function move(ball: Ball): void {
+    ball.position.x += ball.velocity.x;
+    ball.position.y += ball.velocity.y;
+
+    
+    if (ball.position.x <= 0 || ball.position.x >= window.innerWidth) {
+      ball.velocity.x *= -1;
+    }
+    if (ball.position.y <= 0 || ball.position.y >= window.innerHeight) {
+      ball.velocity.y *= -1;
+    }
+
+    ball.element.style.transform = `matrix(1, 0, 0, 1, ${ball.position.x}, ${ball.position.y})`;
+  }
 }
-
-function move(): void {
-  if (!ball) return; 
-
-  position.x += velocity.x;
-  position.y += velocity.y;
-  ball.style.transform = `matrix(1, 0, 0, 1, ${position.x}, ${position.y})`;
-
-  setTimeout(move, 16); 
-}}
-
-
-
