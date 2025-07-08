@@ -8,10 +8,10 @@ namespace BallAnimation {
   };
 
   const balls: Ball[] = [];
-
   let animationFrameId: number | null = null;
   let intervalId: number | null = null;
   let timeoutId: number | null = null;
+  let timePreviousFrame: number = Date.now();
 
   window.addEventListener("load", () => {
     handleInput();
@@ -87,8 +87,6 @@ namespace BallAnimation {
       span.style.setProperty("--highlight", randomColor);
 
       span.classList.add("ball");
-      
-
       document.body.appendChild(span);
 
       const posX = Math.random() * window.innerWidth;
@@ -98,8 +96,8 @@ namespace BallAnimation {
         element: span,
         position: { x: posX, y: posY },
         velocity: {
-          x: (Math.random() - 0.5) * 10,
-          y: (Math.random() - 0.5) * 10
+          x: (Math.random() - 0.5) * 100,
+          y: (Math.random() - 0.5) * 100,
         },
         color: randomColor
       };
@@ -135,30 +133,44 @@ namespace BallAnimation {
     }
   }
 
-  function animateWithRequestAnimationFrame() {
+  function moveAllBalls(timeDelta: number): void {
     for (const ball of balls) {
-      move(ball);
+      move(ball, timeDelta);
     }
+  }
+
+  function animateWithRequestAnimationFrame() {
+    const timeCurrent = Date.now();
+    const timeDelta = (timeCurrent - timePreviousFrame) / 1000;
+    timePreviousFrame = timeCurrent;
+
+    moveAllBalls(timeDelta);
     animationFrameId = requestAnimationFrame(animateWithRequestAnimationFrame);
   }
 
   function animateWithSetInterval() {
+    timePreviousFrame = Date.now();
     intervalId = window.setInterval(() => {
-      for (const ball of balls) {
-        move(ball);
-      }
+      const timeCurrent = Date.now();
+      const timeDelta = (timeCurrent - timePreviousFrame) / 1000;
+      timePreviousFrame = timeCurrent;
+
+      moveAllBalls(timeDelta);
     }, 16);
   }
 
   function animateWithSetTimeout() {
-    for (const ball of balls) {
-      move(ball);
-    }
+    const timeCurrent = Date.now();
+    const timeDelta = (timeCurrent - timePreviousFrame) / 1000;
+    timePreviousFrame = timeCurrent;
+
+    moveAllBalls(timeDelta);
     timeoutId = window.setTimeout(animateWithSetTimeout, 16);
   }
 
   function startAnimation(method: string) {
     stopAllAnimations();
+    timePreviousFrame = Date.now();
     switch (method) {
       case "requestAnimationFrame":
         animateWithRequestAnimationFrame();
@@ -172,9 +184,9 @@ namespace BallAnimation {
     }
   }
 
-  function move(ball: Ball): void {
-    ball.position.x += ball.velocity.x;
-    ball.position.y += ball.velocity.y;
+  function move(ball: Ball, timeDelta: number): void {
+    ball.position.x += ball.velocity.x * timeDelta;
+    ball.position.y += ball.velocity.y * timeDelta;
 
     if (ball.position.x <= 0 || ball.position.x >= window.innerWidth) {
       ball.velocity.x *= -1;
@@ -183,7 +195,7 @@ namespace BallAnimation {
       ball.velocity.y *= -1;
     }
 
-    ball.element.style.left = ball.position.x + "px";
-    ball.element.style.top = ball.position.y + "px";
+    ball.element.style.left = `${ball.position.x}px`;
+    ball.element.style.top = `${ball.position.y}px`;
   }
 }
