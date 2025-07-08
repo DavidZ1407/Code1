@@ -1,201 +1,239 @@
-namespace BallAnimation {
-  type Vector = { x: number; y: number };
-  type Ball = {
-    element: HTMLSpanElement;
-    position: Vector;
-    velocity: Vector;
-    color: string;
-  };
-
-  const balls: Ball[] = [];
-  let animationFrameId: number | null = null;
-  let intervalId: number | null = null;
-  let timeoutId: number | null = null;
-  let timePreviousFrame: number = Date.now();
-
-  window.addEventListener("load", () => {
-    handleInput();
-  });
-
-  function handleInput(): void {
-    const input = document.createElement("input");
-    input.type = "number";
-    input.id = "ballCount";
-    input.value = "100";
-
-    const select = document.createElement("select");
-    select.id = "animationMethod";
-    ["requestAnimationFrame", "setInterval", "setTimeout"].forEach(method => {
-      const option = document.createElement("option");
-      option.value = method;
-      option.textContent = method;
-      select.appendChild(option);
-    });
-
-    const button = document.createElement("button");
-    button.textContent = "Play BALL";
-
-    document.body.appendChild(input);
-    document.body.appendChild(select);
-    document.body.appendChild(button);
-
-    button.addEventListener("click", () => {
-      const count = parseInt(input.value, 10);
-      const method = select.value;
-
-      if (isNaN(count) || count <= 0) {
-        alert("Please enter a valid number.");
-        return;
-      }
-
-      clearBalls();
-      createBalls(count);
-      startAnimation(method);
-    });
-  }
-
-  function clearBalls(): void {
-    stopAllAnimations();
-    for (const ball of balls) {
-      ball.element.remove();
-    }
-    balls.length = 0;
-  }
-
-  function createBalls(count: number): void {
-    const rootStyles = getComputedStyle(document.documentElement);
-    const colorVars = [
-      "--neon-pink",
-      "--neon-green",
-      "--neon-orange",
-      "--neon-yellow",
-      "--neon-cyan",
-      "--neon-red",
-      "--neon-purple"
-    ];
-
-    const uiHeight = getUIHeight();
-
-    for (let i = 0; i < count; i++) {
-      const span = document.createElement("span");
-
-      const randomVar = colorVars[Math.floor(Math.random() * colorVars.length)];
-      const randomColor = rootStyles.getPropertyValue(randomVar).trim();
-
-      span.style.setProperty("--span-bg", randomColor);
-      span.style.setProperty("--span-border", randomColor);
-      span.style.setProperty("--highlight", randomColor);
-
-      span.classList.add("ball");
-      document.body.appendChild(span);
-
-      const posX = Math.random() * window.innerWidth;
-      const posY = Math.random() * (window.innerHeight - uiHeight) + uiHeight;
-
-      const ball: Ball = {
-        element: span,
-        position: { x: posX, y: posY },
-        velocity: {
-          x: (Math.random() - 0.5) * 100,
-          y: (Math.random() - 0.5) * 100,
-        },
-        color: randomColor
+  namespace BallGame {
+      type Vector = { x: number; y: number };
+      type Ball = {
+        element: HTMLSpanElement;
+        position: Vector;
+        velocity: Vector;
+        color: string;
+        isBlackhole?: boolean;
       };
 
-      balls.push(ball);
+      const balls: Ball[] = [];
+      let destroyedCount = 0;
+      let collisionMode: "point" | "circle" | "rect" = "circle";
+
+      window.addEventListener("load", handleLoad);
+
+      function handleLoad(): void {
+        const score = document.createElement("div");
+        score.id = "score";
+        score.classList.add("ui-box");
+        score.textContent = "Destroyed: 0";
+        document.body.appendChild(score);
+
+        const remaining = document.createElement("div");
+        remaining.id = "remaining";
+        remaining.classList.add("ui-box");
+        remaining.textContent = "Remaining: 0";
+        document.body.appendChild(remaining);
+
+        const toggle = document.createElement("button");
+        toggle.id = "toggle";
+        toggle.classList.add("ui-box");
+        toggle.textContent = "Mode: Circle";
+        toggle.onclick = () => {
+          collisionMode =
+            collisionMode === "point" ? "circle" : collisionMode === "circle" ? "rect" : "point";
+          toggle.textContent = `Mode: ${collisionMode[0].toUpperCase()}${collisionMode.slice(1)}`;
+        };
+        document.body.appendChild(toggle);
+
+        setupInteraction();
+        createBalls(100);
+        setInterval(() => createBalls(10), 30000);
+        setInterval(update, 16); 
+      }
+
+      function setupInteraction(): void {
+        window.addEventListener("click", (event) => {
+          const element = document.elementFromPoint(event.clientX, event.clientY);
+          if (!element) return;
+
+          const ball = balls.find(b => b.element === element && !b.isBlackhole);
+          if (ball) {
+            ball.element.remove();
+            balls.splice(balls.indexOf(ball), 1);
+            destroyedCount++;
+            updateScore();
+
+            if (destroyedCount % 10 === 0) {
+              createBlackhole();
+            }
+          }
+        });
+      }
+
+      function updateScore(): void {
+        const score = document.getElementById("score");
+        if (score) score.textContent = `Destroyed: ${destroyedCount}`;
+        const remaining = document.getElementById("remaining");
+        if (remaining) remaining.textContent = `Remaining: ${balls.filter(b => !b.isBlackhole).length}`;
+      }
+
+      function createBalls(count: number): void {
+        for (let i = 0; i < count; i++) {
+          const x = Math.random() * window.innerWidth;
+          const y = Math.random() * (window.innerHeight - 100) + 100;
+          createBallAt(x, y);
+        }
+        updateScore();
+      }
+
+      function createBallAt(x: number, y: number): void {
+        const rootStyles = getComputedStyle(document.documentElement);
+        const colorVars = [
+          "--neon-pink", "--neon-green", "--neon-orange",
+          "--neon-yellow", "--neon-cyan", "--neon-red", "--neon-purple"
+        ];
+        const randomVar = colorVars[Math.floor(Math.random() * colorVars.length)];
+        const randomColor = rootStyles.getPropertyValue(randomVar).trim();
+
+        const span = document.createElement("span");
+        span.classList.add("ball");
+        span.style.setProperty("--span-bg", randomColor);
+        span.style.setProperty("--span-border", randomColor);
+        span.style.setProperty("--highlight", randomColor);
+        document.body.appendChild(span);
+
+        const ball: Ball = {
+          element: span,
+          position: { x, y },
+          velocity: {
+            x: (Math.random() - 0.5) * 100,
+            y: (Math.random() - 0.5) * 100
+          },
+          color: randomColor
+        };
+
+        balls.push(ball);
+        updateScore();
+      }
+
+      function update(): void {
+        moveAllBalls(0.016);
+      }
+
+      function moveAllBalls(dt: number): void {
+        for (const ball of balls) {
+          move(ball, dt);
+        }
+        checkBallCollisions();
+      }
+
+      function move(ball: Ball, dt: number): void {
+        ball.position.x += ball.velocity.x * dt;
+        ball.position.y += ball.velocity.y * dt;
+
+        if (ball.position.x < 0 || ball.position.x > window.innerWidth) ball.velocity.x *= -1;
+        if (ball.position.y < 0 || ball.position.y > window.innerHeight) ball.velocity.y *= -1;
+
+        const transform = `matrix(1, 0, 0, 1, ${ball.position.x}, ${ball.position.y})`;
+        ball.element.style.transform = transform;
+      }
+
+      function checkBallCollisions(): void {
+        const radius = 10;
+        for (let i = 0; i < balls.length; i++) {
+          for (let j = i + 1; j < balls.length; j++) {
+            const b1 = balls[i], b2 = balls[j];
+            if (b1.isBlackhole || b2.isBlackhole) continue;
+
+            let collided = false;
+            switch (collisionMode) {
+              case "point":
+                collided = checkPointCollision(b1, b2);
+                break;
+              case "circle":
+                collided = checkCircleCollision(b1, b2, radius);
+                break;
+              case "rect":
+                collided = checkRectCollision(b1, b2, radius * 2, radius * 2);
+                break;
+            }
+
+            if (collided) {
+              const temp = b1.velocity;
+              b1.velocity = b2.velocity;
+              b2.velocity = temp;
+            }
+          }
+        }
+      }
+
+      function checkPointCollision(b1: Ball, b2: Ball): boolean {
+        const tolerance = 5;
+        const dx = b1.position.x - b2.position.x;
+        const dy = b1.position.y - b2.position.y;
+        return Math.abs(dx) < tolerance && Math.abs(dy) < tolerance;
+      }
+
+      function checkCircleCollision(b1: Ball, b2: Ball, radius: number): boolean {
+        const dx = b1.position.x - b2.position.x;
+        const dy = b1.position.y - b2.position.y;
+        return Math.sqrt(dx * dx + dy * dy) < radius * 2;
+      }
+
+      function checkRectCollision(b1: Ball, b2: Ball, width: number, height: number): boolean {
+        return (
+          b1.position.x < b2.position.x + width &&
+          b1.position.x + width > b2.position.x &&
+          b1.position.y < b2.position.y + height &&
+          b1.position.y + height > b2.position.y
+        );
+      }
+
+      function createBlackhole(): void {
+        const span = document.createElement("span");
+        span.classList.add("ball", "blackhole"); 
+        span.style.backgroundColor = "black";
+        span.style.border = "2px solid white";
+        document.body.appendChild(span);
+
+        const x = Math.random() * window.innerWidth;
+        const y = Math.random() * window.innerHeight;
+        const blackhole: Ball = {
+          element: span,
+          position: { x, y },
+          velocity: {
+            x: (Math.random() - 0.5) * 200,
+            y: (Math.random() - 0.5) * 200
+          },
+          color: "black",
+          isBlackhole: true
+        };
+
+        balls.push(blackhole);
+        updateScore();
+
+        const duration = 8000; 
+        const attractInterval = setInterval(() => attractBalls(blackhole), 30);
+
+        setTimeout(() => {
+          span.remove();
+          balls.splice(balls.indexOf(blackhole), 1);
+          clearInterval(attractInterval);
+          updateScore();
+        }, duration);
+      }
+
+      function attractBalls(blackhole: Ball): void {
+        for (let i = balls.length - 1; i >= 0; i--) {
+          const ball = balls[i];
+          if (ball === blackhole || ball.isBlackhole) continue;
+
+          const dx = blackhole.position.x - ball.position.x;
+          const dy = blackhole.position.y - ball.position.y;
+          const dist = Math.sqrt(dx * dx + dy * dy);
+          const force = 300 / (dist + 1);
+
+          ball.velocity.x += (dx / dist) * force;
+          ball.velocity.y += (dy / dist) * force;
+
+          if (dist < 20) {
+            ball.element.remove();
+            balls.splice(i, 1);
+            updateScore();
+          }
+        }
+      }
     }
-  }
-
-  function getUIHeight(): number {
-    const input = document.getElementById("ballCount");
-    const button = document.querySelector("button");
-
-    if (!input || !button) return 0;
-
-    const inputRect = input.getBoundingClientRect();
-    const buttonRect = button.getBoundingClientRect();
-
-    return Math.max(inputRect.bottom, buttonRect.bottom);
-  }
-
-  function stopAllAnimations() {
-    if (animationFrameId !== null) {
-      cancelAnimationFrame(animationFrameId);
-      animationFrameId = null;
-    }
-    if (intervalId !== null) {
-      clearInterval(intervalId);
-      intervalId = null;
-    }
-    if (timeoutId !== null) {
-      clearTimeout(timeoutId);
-      timeoutId = null;
-    }
-  }
-
-  function moveAllBalls(timeDelta: number): void {
-    for (const ball of balls) {
-      move(ball, timeDelta);
-    }
-  }
-
-  function animateWithRequestAnimationFrame() {
-    const timeCurrent = Date.now();
-    const timeDelta = (timeCurrent - timePreviousFrame) / 1000;
-    timePreviousFrame = timeCurrent;
-
-    moveAllBalls(timeDelta);
-    animationFrameId = requestAnimationFrame(animateWithRequestAnimationFrame);
-  }
-
-  function animateWithSetInterval() {
-    timePreviousFrame = Date.now();
-    intervalId = window.setInterval(() => {
-      const timeCurrent = Date.now();
-      const timeDelta = (timeCurrent - timePreviousFrame) / 1000;
-      timePreviousFrame = timeCurrent;
-
-      moveAllBalls(timeDelta);
-    }, 16);
-  }
-
-  function animateWithSetTimeout() {
-    const timeCurrent = Date.now();
-    const timeDelta = (timeCurrent - timePreviousFrame) / 1000;
-    timePreviousFrame = timeCurrent;
-
-    moveAllBalls(timeDelta);
-    timeoutId = window.setTimeout(animateWithSetTimeout, 16);
-  }
-
-  function startAnimation(method: string) {
-    stopAllAnimations();
-    timePreviousFrame = Date.now();
-    switch (method) {
-      case "requestAnimationFrame":
-        animateWithRequestAnimationFrame();
-        break;
-      case "setInterval":
-        animateWithSetInterval();
-        break;
-      case "setTimeout":
-        animateWithSetTimeout();
-        break;
-    }
-  }
-
-  function move(ball: Ball, timeDelta: number): void {
-    ball.position.x += ball.velocity.x * timeDelta;
-    ball.position.y += ball.velocity.y * timeDelta;
-
-    if (ball.position.x <= 0 || ball.position.x >= window.innerWidth) {
-      ball.velocity.x *= -1;
-    }
-    if (ball.position.y <= getUIHeight() || ball.position.y >= window.innerHeight) {
-      ball.velocity.y *= -1;
-    }
-
-    ball.element.style.left = `${ball.position.x}px`;
-    ball.element.style.top = `${ball.position.y}px`;
-  }
-}
