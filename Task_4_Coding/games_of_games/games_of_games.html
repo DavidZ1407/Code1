@@ -5,6 +5,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Games of Games</title>
+    <script defer src="globalElements.js"></script>
+    <script defer src="player.js"></script>
+    <script defer src="bullet.js"></script>
+    <script defer src="enemy.js"></script>
+    <script defer src="power_up.js"></script>
+    <script defer src="utils.js"></script>
     <script defer src="main.js"></script>
     <link rel="stylesheet" href="games_of_games.css">
 </head>
@@ -12,7 +18,14 @@
 <body>
     <div id="score">Score: 0</div>
     <div id="lives">Lives: ❤️❤️❤️</div>
-    <div id="game"></div>
+    <div id="game">
+        <div id="game-instructions">
+            <h2>Welcome to Games of Games!</h2>
+            <p>Use Arrow Keys to Move</p>
+            <p>Spacebar to Shoot</p>
+            <p class="press-to-start">(Spacebar to Start!)</p>
+        </div>
+    </div>
 </body>
 
 </html>

@@ -1,180 +1,165 @@
 body {
-  margin: 0;
-  background: black;
-  overflow: hidden;
+    margin: 0;
+    background: black;
+    overflow: hidden;
 }
 
 #game {
-  position: relative;
-  width: 600px;
-  height: 800px;
-  background: #111;
-  margin: 20px auto 10px auto; 
-  border: 2px solid white;
+    position: relative;
+    width: 600px;
+    height: 800px;
+    background: #111;
+    margin: 20px auto 10px auto;
+    border: 2px solid white;
 }
 
 .player, .enemy, .bullet {
-  position: absolute;
-  width: 40px;
-  height: 40px;
+    position: absolute;
+    width: 40px;
+    height: 40px;
 }
 
 .player {
-  background-color: cyan;
-  transition: background-color 0.1s;
+    background-color: cyan;
+    transition: background-color 0.1s;
 }
 
 .enemy {
-  background-color: red;
+    background-color: red;
 }
 
 .bullet {
-  background-color: yellow;
-  width: 5px;
-  height: 10px;
+    background-color: yellow;
+    width: 5px;
+    height: 10px;
 }
 
 #score, #lives {
-  color: white;
-  font-family: monospace;
-  font-size: 20px;
-  width: 600px;
-  margin: 0 auto;
-  text-align: center;
+    color: white;
+    font-family: monospace;
+    font-size: 20px;
+    width: 600px;
+    margin: 0 auto;
+    text-align: center;
 }
 
 #score {
-  margin-top: 10px;
+    margin-top: 10px;
 }
 
 #lives {
-  margin-bottom: 10px; 
+    margin-bottom: 10px;
 }
 
-#health, #score {
-  font-family: monospace;
-  font-size: 20px;
-}
 
 .player.shield {
-  box-shadow: 0 0 10px 4px lightblue;
-  border-radius: 6px;
+    box-shadow: 0 0 10px 4px lightblue;
+    border-radius: 6px;
 }
 
-/* Powerups */
+
 .powerup {
-  width: 30px;
-  height: 30px;
-  position: absolute;
-  border-radius: 50%;
-  background-size: 70%;
-  background-repeat: no-repeat;
-  background-position: center;
-  box-shadow: 0 0 8px rgba(255,255,255,0.8);
+    width: 30px;
+    height: 30px;
+    position: absolute;
+    border-radius: 50%;
+    background-size: 70%;
+    background-repeat: no-repeat;
+    background-position: center;
+    box-shadow: 0 0 8px rgba(255, 255, 255, 0.8);
 }
 
-/* Double Shot: "2x" Icon */
-.powerup.double {
-  background-color: orange;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ctext x='32' y='44' font-size='48' text-anchor='middle' font-family='Arial' fill='black'%3E2×%3C/text%3E%3C/svg%3E");
+
+.powerup.doubleShot { 
+    background-color: orange;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ctext x='32' y='44' font-size='48' text-anchor='middle' font-family='Arial' fill='black'%3E2%C3%97%3C/text%3E%3C/svg%3E");
 }
 
-/* Fast Shot: Lightning Bolt */
-.powerup.fast {
-  background-color: yellow;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cpolygon points='32,4 24,36 36,36 28,60' fill='black'/%3E%3C/svg%3E");
+
+.powerup.fastShot { 
+    background-color: yellow;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cpolygon points='32,4 24,36 36,36 28,60' fill='black'/%3E%3C/svg%3E");
 }
 
-/* Shield */
+
 .powerup.shield {
-  background-color: lightblue;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cpath d='M32,4 L12,14 L12,30 C12,46 32,60 32,60 C32,60 52,46 52,30 L52,14 Z' fill='white' stroke='black' stroke-width='2'/%3E%3C/svg%3E");
+    background-color: lightblue;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cpath d='M32,4 L12,14 L12,30 C12,46 32,60 32,60 C32,60 52,46 52,30 L52,14 Z' fill='white' stroke='black' stroke-width='2'/%3E%3C/svg%3E");
 }
 
-/* Nuke */
+
 .powerup.nuke {
-  background-color: crimson;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='28' fill='yellow'/%3E%3Cpath d='M32,10 L32,54 M10,32 L54,32' stroke='black' stroke-width='4'/%3E%3C/svg%3E");
+    background-color: crimson;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='28' fill='yellow'/%3E%3Cpath d='M32,10 L32,54 M10,32 L54,32' stroke='black' stroke-width='4'/%3E%3C/svg%3E");
 }
 
-/* Bullet Time */
-.powerup.bulletTime{
-  background-color: mediumslateblue;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='28' fill='white'/%3E%3Cpolygon points='32,16 24,44 40,44' fill='black'/%3E%3C/svg%3E");
+
+.powerup.bulletTime {
+    background-color: mediumslateblue;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='28' fill='white'/%3E%3Cpolygon points='32,16 24,44 40,44' fill='black'/%3E%3C/svg%3E");
 }
 
-/* Boss Warnung Pulse */
+
 .pulse-circle {
-  position: absolute;
-  border: 2px solid rgba(255, 100, 100, 0.7);
-  border-radius: 50%;
-  animation: pulse 1.5s infinite;
-  pointer-events: none;
+    position: absolute;
+    border: 2px solid rgba(255, 100, 100, 0.7);
+    border-radius: 50%;
+    animation: pulse 1.5s infinite;
+    pointer-events: none;
 }
 
 .boss-pulse {
-  border-color: rgba(255, 0, 0, 0.9);
-  animation: pulse 1s infinite;
+    border-color: rgba(255, 0, 0, 0.9);
+    animation: pulse 1s infinite;
 }
 
 @keyframes pulse {
-  0% {
-    transform: scale(1);
-    opacity: 0.7;
-  }
-  50% {
-    transform: scale(1.3);
-    opacity: 0.3;
-  }
-  100% {
-    transform: scale(1);
-    opacity: 0.7;
-  }
+    0% {
+        transform: scale(1);
+        opacity: 0.7;
+    }
+    50% {
+        transform: scale(1.3);
+        opacity: 0.3;
+    }
+    100% {
+        transform: scale(1);
+        opacity: 0.7;
+    }
 }
 
 .enemy.boss {
-  width: 100px !important;
-  height: 100px !important;
-  border-radius: 15px;
-  box-shadow: 0 0 30px red;
-  transition: background 0.3s ease;
+    width: 100px !important;
+    height: 100px !important;
+    border-radius: 15px;
+    box-shadow: 0 0 30px red;
+    transition: background 0.3s ease;
 }
 
-
 .enemy.boss.hp-10 {
-  background: linear-gradient(45deg, darkred, black);
+    background: linear-gradient(45deg, darkred, black);
 }
 
 .enemy.boss.hp-7 {
-  background: linear-gradient(45deg, orange, black);
+    background: linear-gradient(45deg, orange, black);
 }
 
 .enemy.boss.hp-3 {
-  background: linear-gradient(45deg, rgb(204, 0, 255), black);
+    background: linear-gradient(45deg, rgb(204, 0, 255), black);
 }
 
-
-/* .boss-bullet {
-  position: absolute;
-  width: 10px;
-  height: 10px;
-  background-color: crimson;
-  border-radius: 50%;
-} */
-
-
 .enemy.orbit {
-  animation: orbit 4s linear infinite;
+  
+    animation: orbit 4s linear infinite;
 }
 
 @keyframes orbit {
-  0%   { transform: translateX(0px) translateY(0px); }
-  25%  { transform: translateX(20px) translateY(20px); }
-  50%  { transform: translateX(0px) translateY(40px); }
-  75%  { transform: translateX(-20px) translateY(20px); }
-  100% { transform: translateX(0px) translateY(0px); }
+    0%   { transform: translateX(0px) translateY(0px); }
+    25%  { transform: translateX(20px) translateY(20px); }
+    50%  { transform: translateX(0px) translateY(40px); }
+    75%  { transform: translateX(-20px) translateY(20px); }
+    100% { transform: translateX(0px) translateY(0px); }
 }
-
 
 .enemy.hp-3 {
     background-color: rgb(0, 94, 255);
@@ -186,9 +171,47 @@ body {
     background-color: rgb(255, 0, 0);
 }
 .enemy.boss {
-    background-color: purple;
+    background-color: purple;  
 }
 
 .enemy {
     transition: background-color 0.3s ease;
+}
+
+
+#game-instructions {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: rgba(0, 0, 0, 0.8);
+    color: white;
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+    cursor: pointer;
+    z-index: 1000; 
+}
+
+#game-instructions h2 {
+    margin-top: 0;
+    color: #ffd700; 
+}
+
+#game-instructions p {
+    margin-bottom: 5px;
+    font-size: 1.1em;
+}
+
+.press-to-start {
+    font-size: 1.2em;
+    font-weight: bold;
+    color: #a0f0a0; 
+    animation: pulsate 1.5s infinite alternate; 
+    margin-top: 15px;
+}
+
+@keyframes pulsate {
+    from { opacity: 1; }
+    to { opacity: 0.6; }
 }
