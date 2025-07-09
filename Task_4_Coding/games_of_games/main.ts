@@ -34,9 +34,8 @@ namespace GamesOFGames {
     let currentEnemySpawnDelay = initialEnemySpawnDelay;
 
     let lastTapTime: number = 0;
-    const doubleTapThreshold = 300; 
+    const doubleTapThreshold = 300;
 
-    
     let isDraggingPlayer: boolean = false;
     let dragStartX: number = 0;
     let dragStartY: number = 0;
@@ -61,10 +60,17 @@ namespace GamesOFGames {
                 event.preventDefault();
             }
             if (!gameStarted || gameEnded) return;
+
             activeKeys.add(event.code);
+
             if (event.code === "Space") {
                 GamesOFGames.handlePlayerShot(bullets, enemies);
             }
+        });
+
+        window.addEventListener("keyup", event => {
+            if (!gameStarted || gameEnded) return;
+            activeKeys.delete(event.code);
         });
 
         instructionsBox.addEventListener("touchstart", (event) => {
@@ -78,19 +84,17 @@ namespace GamesOFGames {
             event.preventDefault();
         }, { passive: false });
 
-    
+
         gameContainer.addEventListener("touchstart", (event) => {
             if (gameStarted && !gameEnded) {
                 const currentTime = new Date().getTime();
                 const tapDifference = currentTime - lastTapTime;
 
                 if (tapDifference < doubleTapThreshold && tapDifference > 0) {
-                   
                     GamesOFGames.handlePlayerShot(bullets, enemies);
-                    lastTapTime = 0; 
-                    isDraggingPlayer = false; 
+                    lastTapTime = 0;
+                    isDraggingPlayer = false;
                 } else {
-                  
                     isDraggingPlayer = true;
                     dragStartX = event.touches[0].clientX;
                     dragStartY = event.touches[0].clientY;
@@ -130,12 +134,6 @@ namespace GamesOFGames {
             }
             event.preventDefault();
         }, { passive: false });
-
-
-        window.addEventListener("keyup", event => {
-            if (!gameStarted || gameEnded) return;
-            activeKeys.delete(event.code);
-        });
     };
 
     function startEnemySpawningInterval() {
@@ -206,6 +204,8 @@ namespace GamesOFGames {
 
         const timeDelta = (time - timePreviousFrame) / 1000;
         timePreviousFrame = time;
+
+        player.move(activeKeys, timeDelta);
 
         GamesOFGames.updateAndCleanBullets(bullets, enemies, timeDelta);
         GamesOFGames.updateAndCleanEnemies(enemies, player, timeDelta);
