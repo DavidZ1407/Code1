@@ -62,3 +62,13 @@ This is an overview page for the **Code1 module**.
 
 👉 [Ball Animation HTML](https://davidz1407.github.io/Code1/Task_4_Coding/ball_animation/ball.html) 
 
+## 🟥 Control
+
+👉 [Control HTML](https://davidz1407.github.io/Code1/Task_4_Coding/control/control.html) 
+
+## 🎮 Game
+
+👉 [Game HTML](https://davidz1407.github.io/Code1/Task_4_Coding/games_of_games/games_of_games.html) 
+
+
+
