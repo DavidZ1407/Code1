@@ -149,7 +149,6 @@ body {
 }
 
 .enemy.orbit {
-  
     animation: orbit 4s linear infinite;
 }
 
@@ -214,4 +213,105 @@ body {
 @keyframes pulsate {
     from { opacity: 1; }
     to { opacity: 0.6; }
+}
+
+@media (max-width: 768px) {
+    #game {
+        width: 90vw;
+        height: 120vw;
+        margin: 10px auto;
+        border-width: 1px;
+    }
+
+    #score, #lives {
+        width: 90vw;
+        font-size: 18px;
+    }
+
+    .player, .enemy, .bullet {
+        width: 30px;
+        height: 30px;
+    }
+
+    .bullet {
+        width: 4px;
+        height: 8px;
+    }
+
+    .powerup {
+        width: 25px;
+        height: 25px;
+    }
+
+    .enemy.boss {
+        width: 80px !important;
+        height: 80px !important;
+    }
+
+    #game-instructions {
+        padding: 15px;
+        width: 80%;
+    }
+
+    #game-instructions h2 {
+        font-size: 1.8em;
+    }
+
+    #game-instructions p {
+        font-size: 1em;
+    }
+
+    .press-to-start {
+        font-size: 1.1em;
+    }
+}
+
+@media (max-width: 425px) {
+    #game {
+        width: 95vw;
+        height: 140vw;
+        margin: 5px auto;
+    }
+
+    #score, #lives {
+        width: 95vw;
+        font-size: 16px;
+    }
+
+    .player, .enemy, .bullet {
+        width: 25px;
+        height: 25px;
+    }
+
+    .bullet {
+        width: 3px;
+        height: 7px;
+    }
+
+    .powerup {
+        width: 20px;
+        height: 20px;
+    }
+
+    .enemy.boss {
+        width: 60px !important;
+        height: 60px !important;
+    }
+
+    #game-instructions {
+        padding: 10px;
+        width: 90%;
+    }
+
+    #game-instructions h2 {
+        font-size: 1.5em;
+    }
+
+    #game-instructions p {
+        font-size: 0.9em;
+    }
+
+    .press-to-start {
+        font-size: 1em;
+    }
 }

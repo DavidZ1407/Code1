@@ -21,6 +21,7 @@ namespace GamesOFGames {
     let gameStarted = false;
 
     let instructionsBox: HTMLDivElement;
+    let gameContainer: HTMLDivElement; 
 
     let enemySpawnInterval: number | undefined;
     let powerUpSpawnInterval: number | undefined;
@@ -33,6 +34,7 @@ namespace GamesOFGames {
     let currentEnemySpawnDelay = initialEnemySpawnDelay;
 
     window.onload = () => {
+        gameContainer = document.getElementById("game") as HTMLDivElement; 
         player = new GamesOFGames.Player();
         GamesOFGames.updateLivesDisplay();
         GamesOFGames.updateScoreDisplay();
@@ -65,6 +67,14 @@ namespace GamesOFGames {
             }
             event.preventDefault();
         }, { passive: false });
+
+        gameContainer.addEventListener("touchstart", (event) => { 
+            if (gameStarted && !gameEnded) {
+                GamesOFGames.handlePlayerShot(bullets, enemies);
+            }
+            event.preventDefault();
+        }, { passive: false });
+
 
         window.addEventListener("keyup", event => {
             if (!gameStarted || gameEnded) return;
@@ -101,7 +111,16 @@ namespace GamesOFGames {
         enemies.length = 0;
         powerUps.length = 0;
 
-        player.playerPosition = { x: 280, y: 700 };
+    
+        const playerWidth = player.playerElement.offsetWidth;
+        const playerHeight = player.playerElement.offsetHeight;
+        const gameWidth = gameContainer.offsetWidth;
+        const gameHeight = gameContainer.offsetHeight;
+
+        player.playerPosition = {
+            x: (gameWidth / 2) - (playerWidth / 2),
+            y: gameHeight - playerHeight - 10 
+        };
         player.hasDoubleShot = false;
         player.hasFastShot = false;
         player.shieldCount = 0;
