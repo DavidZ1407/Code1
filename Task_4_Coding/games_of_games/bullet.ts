@@ -1,4 +1,3 @@
-// src/Bullet.ts
 namespace GamesOFGames {
     export class Bullet {
         bulletElement: HTMLDivElement = document.createElement("div");

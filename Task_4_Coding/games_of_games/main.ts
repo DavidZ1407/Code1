@@ -21,7 +21,7 @@ namespace GamesOFGames {
     let gameStarted = false;
 
     let instructionsBox: HTMLDivElement;
-    let gameContainer: HTMLDivElement; 
+    let gameContainer: HTMLDivElement;
 
     let enemySpawnInterval: number | undefined;
     let powerUpSpawnInterval: number | undefined;
@@ -33,8 +33,11 @@ namespace GamesOFGames {
     let lastDifficultyIncreaseScore = 0;
     let currentEnemySpawnDelay = initialEnemySpawnDelay;
 
+    let lastTapTime: number = 0;
+    const doubleTapThreshold = 300;
+
     window.onload = () => {
-        gameContainer = document.getElementById("game") as HTMLDivElement; 
+        gameContainer = document.getElementById("game") as HTMLDivElement;
         player = new GamesOFGames.Player();
         GamesOFGames.updateLivesDisplay();
         GamesOFGames.updateScoreDisplay();
@@ -68,9 +71,18 @@ namespace GamesOFGames {
             event.preventDefault();
         }, { passive: false });
 
-        gameContainer.addEventListener("touchstart", (event) => { 
+        gameContainer.addEventListener("touchstart", (event) => {
             if (gameStarted && !gameEnded) {
-                GamesOFGames.handlePlayerShot(bullets, enemies);
+                const currentTime = new Date().getTime();
+                const tapDifference = currentTime - lastTapTime;
+
+                if (tapDifference < doubleTapThreshold && tapDifference > 0) {
+                    GamesOFGames.handlePlayerShot(bullets, enemies);
+                    lastTapTime = 0;
+                } else {
+                    console.log("Single tap for movement detected.");
+                }
+                lastTapTime = currentTime;
             }
             event.preventDefault();
         }, { passive: false });
@@ -111,7 +123,7 @@ namespace GamesOFGames {
         enemies.length = 0;
         powerUps.length = 0;
 
-    
+
         const playerWidth = player.playerElement.offsetWidth;
         const playerHeight = player.playerElement.offsetHeight;
         const gameWidth = gameContainer.offsetWidth;
@@ -119,7 +131,7 @@ namespace GamesOFGames {
 
         player.playerPosition = {
             x: (gameWidth / 2) - (playerWidth / 2),
-            y: gameHeight - playerHeight - 10 
+            y: gameHeight - playerHeight - 10
         };
         player.hasDoubleShot = false;
         player.hasFastShot = false;
