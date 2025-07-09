@@ -34,7 +34,14 @@ namespace GamesOFGames {
     let currentEnemySpawnDelay = initialEnemySpawnDelay;
 
     let lastTapTime: number = 0;
-    const doubleTapThreshold = 300;
+    const doubleTapThreshold = 300; 
+
+    
+    let isDraggingPlayer: boolean = false;
+    let dragStartX: number = 0;
+    let dragStartY: number = 0;
+    let playerStartPosX: number = 0;
+    let playerStartPosY: number = 0;
 
     window.onload = () => {
         gameContainer = document.getElementById("game") as HTMLDivElement;
@@ -71,18 +78,55 @@ namespace GamesOFGames {
             event.preventDefault();
         }, { passive: false });
 
+    
         gameContainer.addEventListener("touchstart", (event) => {
             if (gameStarted && !gameEnded) {
                 const currentTime = new Date().getTime();
                 const tapDifference = currentTime - lastTapTime;
 
                 if (tapDifference < doubleTapThreshold && tapDifference > 0) {
+                   
                     GamesOFGames.handlePlayerShot(bullets, enemies);
-                    lastTapTime = 0;
+                    lastTapTime = 0; 
+                    isDraggingPlayer = false; 
                 } else {
-                    console.log("Single tap for movement detected.");
+                  
+                    isDraggingPlayer = true;
+                    dragStartX = event.touches[0].clientX;
+                    dragStartY = event.touches[0].clientY;
+                    playerStartPosX = player.playerPosition.x;
+                    playerStartPosY = player.playerPosition.y;
                 }
                 lastTapTime = currentTime;
+            }
+            event.preventDefault();
+        }, { passive: false });
+
+        gameContainer.addEventListener("touchmove", (event) => {
+            if (gameStarted && !gameEnded && isDraggingPlayer) {
+                const touch = event.touches[0];
+                const deltaX = touch.clientX - dragStartX;
+                const deltaY = touch.clientY - dragStartY;
+
+                let newX = playerStartPosX + deltaX;
+                let newY = playerStartPosY + deltaY;
+
+                const gameRect = gameContainer.getBoundingClientRect();
+                const playerRect = player.playerElement.getBoundingClientRect();
+
+                newX = Math.max(0, Math.min(newX, gameRect.width - playerRect.width));
+                newY = Math.max(0, Math.min(newY, gameRect.height - playerRect.height));
+
+                player.playerPosition.x = newX;
+                player.playerPosition.y = newY;
+                player.updatePosition();
+            }
+            event.preventDefault();
+        }, { passive: false });
+
+        gameContainer.addEventListener("touchend", (event) => {
+            if (gameStarted && !gameEnded) {
+                isDraggingPlayer = false;
             }
             event.preventDefault();
         }, { passive: false });
@@ -162,8 +206,6 @@ namespace GamesOFGames {
 
         const timeDelta = (time - timePreviousFrame) / 1000;
         timePreviousFrame = time;
-
-        player.move(activeKeys, timeDelta);
 
         GamesOFGames.updateAndCleanBullets(bullets, enemies, timeDelta);
         GamesOFGames.updateAndCleanEnemies(enemies, player, timeDelta);
