@@ -134,7 +134,7 @@ namespace Test {
 //     }
 // }
 
-const someData = { message: "Hallo Welt", count: 42 };
+const someData: = { message: "Hallo Welt", count: 42 };
 const someEventTarget = document.body;
 
 someEventTarget.addEventListener("someSpecialType", (e: Event) => {

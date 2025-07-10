@@ -7,3 +7,4 @@ var QuizGame;
         estimation: { question1: ["How long does a signal (in fiberoptic) take from the earth to the sun? (Min:Seconds)", "12:30"] } };
     console.log(QuizGame.data["singleChoice"]["question1"][0]);
 })(QuizGame || (QuizGame = {}));
+//# sourceMappingURL=data.js.map

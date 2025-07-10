@@ -21,3 +21,4 @@ var QuizGame;
         }
     }
 })(QuizGame || (QuizGame = {}));
+//# sourceMappingURL=quiz.js.map
