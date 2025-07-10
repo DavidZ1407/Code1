@@ -1,62 +1,62 @@
 namespace Nim {
 
-    let rows: number[] = [];
-    let Player: boolean = false;
+    const rows: number[] = [];
+    const player: boolean = false;
 
-    for (let i = 0; i < 4; i++) {
-        let value = Number(prompt(`Fill Row ${i + 1}`)) || 0;
+    for (let i: number = 0; i < 4; i++) {
+        const value: number = Number(prompt(`Fill Row ${i + 1}`)) || 0;
         rows.push(value);
     }
 
-    gameLoop(rows, Player);
+    gameLoop(rows, player);
 
-    function gameLoop(_rows: number[], _Player: boolean) {
-        displayState(_rows, _Player);
+    function gameLoop(_rows: number[], _player: boolean): void {
+        displayState(_rows, _player);
 
-        let selectedRow: number = getRow(_rows);
-        let available = _rows[selectedRow - 1];
+        const selectedRow: number = getRow(_rows);
+        const available: number = _rows[selectedRow - 1];
 
-        let lightsToRemove: number = promptNumberUserInput(available, selectedRow);
+        const lightsToRemove: number = promptNumberUserInput(available, selectedRow);
 
         _rows[selectedRow - 1] -= lightsToRemove;
 
         if (checkWinner(_rows)) {
-            console.log(_Player ? "Player 2 has won the game" : "Player 1 has won the game");
+            console.log(_player ? "Player 2 has won the game" : "Player 1 has won the game");
             return;
         } else {
-            gameLoop(_rows, !_Player);
+            gameLoop(_rows, !_player);
         }
     }
 
-    function checkWinner(rows: number[]): boolean {
-        return rows.reduce((sum, val) => sum + val, 0) === 0;
+    function checkWinner(_rows: number[]): boolean {
+        return _rows.reduce((_sum, _val) => _sum + _val, 0) === 0;
     }
 
-    function getRow(rows: number[]): number {
-        let userRowSelection: number = promptRowUserInput();
+    function getRow(_rows: number[]): number {
+        const userRowSelection: number = promptRowUserInput();
 
-        if (rows[userRowSelection - 1] === 0) {
+        if (_rows[userRowSelection - 1] === 0) {
             console.log(`Row ${userRowSelection} is empty. Please select a different row.`);
-            return getRow(rows);
+            return getRow(_rows);
         }
 
         console.log("Selected row:", userRowSelection);
         return userRowSelection;
     }
 
-    function promptNumberUserInput(available: number, currentRow: number): number {
-        let input: number = Number(prompt(`How many lights to remove on line ${currentRow}`));
+    function promptNumberUserInput(_available: number, _currentRow: number): number {
+        const input: number = Number(prompt(`How many lights to remove on line ${_currentRow}`));
 
-        if (isNaN(input) || input <= 0 || input > available) {
-            console.log(`Ungültiger Zug! Gib eine gültige Anzahl zwischen 1 und ${available} ein.`);
-            return promptNumberUserInput(available, currentRow);
+        if (isNaN(input) || input <= 0 || input > _available) {
+            console.log(`Ungültiger Zug! Gib eine gültige Anzahl zwischen 1 und ${_available} ein.`);
+            return promptNumberUserInput(_available, _currentRow);
         }
 
         return input;
     }
 
     function promptRowUserInput(): number {
-        let input: number = Number(prompt("What Row to select?"));
+        const input: number = Number(prompt("What Row to select?"));
 
         if (checkGameActionInput(input)) {
             return input;
@@ -66,15 +66,15 @@ namespace Nim {
         }
     }
 
-    function checkGameActionInput(input: number): boolean {
-        return input >= 1 && input <= 4;
+    function checkGameActionInput(_input: number): boolean {
+        return _input >= 1 && _input <= 4;
     }
 
-    function displayState(rows: number[], player: boolean) {
-        console.log(`Current Player: --Player ${player ? "2" : "1"}--`);
+    function displayState(_rows: number[], _player: boolean): void {
+        console.log(`Current Player: --Player ${_player ? "2" : "1"}--`);
         console.log("_________________________________________________________");
-        rows.forEach((count, index) => {
-            console.log(`Current Row ${index + 1}: ${count}`);
+        _rows.forEach((_count, _index) => {
+            console.log(`Current Row ${_index + 1}: ${_count}`);
             console.log("_________________________________________________________");
         });
     }
