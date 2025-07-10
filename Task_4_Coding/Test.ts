@@ -134,20 +134,20 @@ namespace Test {
 //     }
 // }
 
-const someData: = { message: "Hallo Welt", count: 42 };
-const someEventTarget = document.body;
+// const someData: CustomEvent= { message "Hallo Welt", count: 42 };
+// const someEventTarget: HTMLElement = document.body;
 
-someEventTarget.addEventListener("someSpecialType", (e: Event) => {
-    const customEvent = e as CustomEvent;
-    console.log("Event empfangen:", customEvent.detail.someKey);
-});
+// someEventTarget.addEventListener("someSpecialType", (_e: Event) => {
+//     const customEvent:CustomEvent  = _e as CustomEvent;
+//     console.log("Event empfangen:", customEvent.detail.someKey);
+// });
 
-let event: CustomEvent = new CustomEvent("someSpecialType", {
-    bubbles: true,
-    detail: { someKey: someData }
-});
+// let event: CustomEvent = new CustomEvent("someSpecialType", {
+//     bubbles: true,
+//     detail: { someKey: someData }
+// });
 
-someEventTarget.dispatchEvent(event);
+// someEventTarget.dispatchEvent(event);
 
 
 }
