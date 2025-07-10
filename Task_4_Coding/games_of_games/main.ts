@@ -1,24 +1,24 @@
 namespace GamesOFGames {
-    export let currentScore = 0;
-    export let currentLives = 3;
+    export const currentScore: number = 0;
+    export const currentLives: number = 3;
     export let player: Player;
 
-    export let bulletTimeActive = false;
-    export let bulletTimeTimeout: any = null;
+    export const bulletTimeActive: boolean = false;
+    export const bulletTimeTimeout: any = null;
 
-    export let lastShotTime = 0;
-    export const normalFireRate = 300;
-    export const fastFireRate = 100;
+    export const lastShotTime: number = 0;
+    export const normalFireRate: number = 300;
+    export const fastFireRate: number = 100;
 
     let timePreviousFrame: number = 0;
 
     export const bullets: Bullet[] = [];
-    export let enemies: Enemy[] = [];
-    export let powerUps: PowerUp[] = [];
-    const activeKeys = new Set<string>();
+    export const enemies: Enemy[] = [];
+    export const powerUps: PowerUp[] = [];
+    const activeKeys:Set<string> = new Set<string>();
 
-    let gameEnded = false;
-    let gameStarted = false;
+    let gameEnded: boolean = false;
+    let gameStarted: boolean = false;
 
     let instructionsBox: HTMLDivElement;
     let gameContainer: HTMLDivElement;
@@ -26,15 +26,15 @@ namespace GamesOFGames {
     let enemySpawnInterval: number | undefined;
     let powerUpSpawnInterval: number | undefined;
 
-    const initialEnemySpawnDelay = 1000;
-    const minEnemySpawnDelay = 200;
-    const spawnDelayDecreaseAmount = 50;
-    const scoreThresholdForDifficultyIncrease = 100;
-    let lastDifficultyIncreaseScore = 0;
-    let currentEnemySpawnDelay = initialEnemySpawnDelay;
+    const initialEnemySpawnDelay: number = 1000;
+    const minEnemySpawnDelay: number = 200;
+    const spawnDelayDecreaseAmount: number = 50;
+    const scoreThresholdForDifficultyIncrease: number = 100;
+    let lastDifficultyIncreaseScore: number = 0;
+    let currentEnemySpawnDelay: number = initialEnemySpawnDelay;
 
     let lastTapTime: number = 0;
-    const doubleTapThreshold = 300;
+    const doubleTapThreshold: number = 300;
 
     let isDraggingPlayer: boolean = false;
     let dragStartX: number = 0;
@@ -42,7 +42,7 @@ namespace GamesOFGames {
     let playerStartPosX: number = 0;
     let playerStartPosY: number = 0;
 
-    window.onload = () => {
+    window.onload = (): void => {
         gameContainer = document.getElementById("game") as HTMLDivElement;
         player = new GamesOFGames.Player();
         GamesOFGames.updateLivesDisplay();
@@ -50,30 +50,30 @@ namespace GamesOFGames {
 
         instructionsBox = document.getElementById("game-instructions") as HTMLDivElement;
 
-        window.addEventListener("keydown", event => {
-            if (event.code === "Space" && (!gameStarted || gameEnded)) {
+        window.addEventListener("keydown", _event => {
+            if (_event.code === "Space" && (!gameStarted || gameEnded)) {
                 if (gameEnded) {
                     location.reload();
                 } else if (!gameStarted) {
                     startGame();
                 }
-                event.preventDefault();
+                _event.preventDefault();
             }
             if (!gameStarted || gameEnded) return;
 
-            activeKeys.add(event.code);
+            activeKeys.add(_event.code);
 
-            if (event.code === "Space") {
+            if (_event.code === "Space") {
                 GamesOFGames.handlePlayerShot(bullets, enemies);
             }
         });
 
-        window.addEventListener("keyup", event => {
+        window.addEventListener("keyup", _event => {
             if (!gameStarted || gameEnded) return;
-            activeKeys.delete(event.code);
+            activeKeys.delete(_event.code);
         });
 
-        instructionsBox.addEventListener("touchstart", (event) => {
+        instructionsBox.addEventListener("touchstart", (_event) => {
             if (!gameStarted || gameEnded) {
                 if (gameEnded) {
                     location.reload();
@@ -81,14 +81,14 @@ namespace GamesOFGames {
                     startGame();
                 }
             }
-            event.preventDefault();
+            _event.preventDefault();
         }, { passive: false });
 
 
-        gameContainer.addEventListener("touchstart", (event) => {
+        gameContainer.addEventListener("touchstart", (_event) => {
             if (gameStarted && !gameEnded) {
-                const currentTime = new Date().getTime();
-                const tapDifference = currentTime - lastTapTime;
+                const currentTime: number = new Date().getTime();
+                const tapDifference: number = currentTime - lastTapTime;
 
                 if (tapDifference < doubleTapThreshold && tapDifference > 0) {
                     GamesOFGames.handlePlayerShot(bullets, enemies);
@@ -96,27 +96,27 @@ namespace GamesOFGames {
                     isDraggingPlayer = false;
                 } else {
                     isDraggingPlayer = true;
-                    dragStartX = event.touches[0].clientX;
-                    dragStartY = event.touches[0].clientY;
+                    dragStartX = _event.touches[0].clientX;
+                    dragStartY = _event.touches[0].clientY;
                     playerStartPosX = player.playerPosition.x;
                     playerStartPosY = player.playerPosition.y;
                 }
                 lastTapTime = currentTime;
             }
-            event.preventDefault();
+            _event.preventDefault();
         }, { passive: false });
 
-        gameContainer.addEventListener("touchmove", (event) => {
+        gameContainer.addEventListener("touchmove", (_event) => {
             if (gameStarted && !gameEnded && isDraggingPlayer) {
-                const touch = event.touches[0];
-                const deltaX = touch.clientX - dragStartX;
-                const deltaY = touch.clientY - dragStartY;
+                const touch: Touch = _event.touches[0];
+                const deltaX: number = touch.clientX - dragStartX;
+                const deltaY: number = touch.clientY - dragStartY;
 
-                let newX = playerStartPosX + deltaX;
-                let newY = playerStartPosY + deltaY;
+                let newX: number = playerStartPosX + deltaX;
+                let newY: number = playerStartPosY + deltaY;
 
-                const gameRect = gameContainer.getBoundingClientRect();
-                const playerRect = player.playerElement.getBoundingClientRect();
+                const gameRect: DOMRect = gameContainer.getBoundingClientRect();
+                const playerRect: DOMRect = player.playerElement.getBoundingClientRect();
 
                 newX = Math.max(0, Math.min(newX, gameRect.width - playerRect.width));
                 newY = Math.max(0, Math.min(newY, gameRect.height - playerRect.height));
@@ -125,18 +125,18 @@ namespace GamesOFGames {
                 player.playerPosition.y = newY;
                 player.updatePosition();
             }
-            event.preventDefault();
+            _event.preventDefault();
         }, { passive: false });
 
-        gameContainer.addEventListener("touchend", (event) => {
+        gameContainer.addEventListener("touchend", (_event) => {
             if (gameStarted && !gameEnded) {
                 isDraggingPlayer = false;
             }
-            event.preventDefault();
+            _event.preventDefault();
         }, { passive: false });
     };
 
-    function startEnemySpawningInterval() {
+    function startEnemySpawningInterval(): void {
         if (enemySpawnInterval) {
             clearInterval(enemySpawnInterval);
         }
@@ -147,7 +147,7 @@ namespace GamesOFGames {
         }, currentEnemySpawnDelay) as unknown as number;
     }
 
-    function startGame() {
+    function startGame(): void {
         gameStarted = true;
         gameEnded = false;
 
@@ -158,18 +158,18 @@ namespace GamesOFGames {
         GamesOFGames.updateScoreDisplay();
         GamesOFGames.updateLivesDisplay();
 
-        bullets.forEach(b => b.remove());
-        enemies.forEach(e => e.remove());
-        powerUps.forEach(p => p.remove());
+        bullets.forEach(_b => _b.remove());
+        enemies.forEach(_e => _e.remove());
+        powerUps.forEach(_p => _p.remove());
         bullets.length = 0;
         enemies.length = 0;
         powerUps.length = 0;
 
 
-        const playerWidth = player.playerElement.offsetWidth;
-        const playerHeight = player.playerElement.offsetHeight;
-        const gameWidth = gameContainer.offsetWidth;
-        const gameHeight = gameContainer.offsetHeight;
+        const playerWidth: number = player.playerElement.offsetWidth;
+        const playerHeight: number = player.playerElement.offsetHeight;
+        const gameWidth: number = gameContainer.offsetWidth;
+        const gameHeight: number = gameContainer.offsetHeight;
 
         player.playerPosition = {
             x: (gameWidth / 2) - (playerWidth / 2),
@@ -199,11 +199,11 @@ namespace GamesOFGames {
         }, 7000) as unknown as number;
     }
 
-    function gameLoop(time: number) {
+    function gameLoop(_time: number): void {
         if (!gameStarted || gameEnded) return;
 
-        const timeDelta = (time - timePreviousFrame) / 1000;
-        timePreviousFrame = time;
+        const timeDelta: number = (_time - timePreviousFrame) / 1000;
+        timePreviousFrame = _time;
 
         player.move(activeKeys, timeDelta);
 
@@ -222,9 +222,9 @@ namespace GamesOFGames {
         requestAnimationFrame(gameLoop);
     }
 
-    export function setGameEnded(state: boolean) {
-        gameEnded = state;
-        if (state) {
+    export function setGameEnded(_state: boolean): void {
+        gameEnded = _state;
+        if (_state) {
             if (enemySpawnInterval) clearInterval(enemySpawnInterval);
             if (powerUpSpawnInterval) clearInterval(powerUpSpawnInterval);
             enemySpawnInterval = undefined;
@@ -232,7 +232,7 @@ namespace GamesOFGames {
         }
     }
 
-    export function gameOver() {
+    export function gameOver(): void {
         setGameEnded(true);
         gameStarted = false;
 

@@ -6,30 +6,30 @@ namespace GamesOFGames {
         size: number;
         type: "normal" | "orbit" | "boss";
         health: number = 1;
-        orbitAngle = 0;
+        orbitAngle: number = 0;
         orbitDirectionX: number = 1;
 
         lastBossShotTime: number = 0;
 
-        constructor(type: "normal" | "orbit" | "boss" = "normal") {
-            this.type = type;
+        constructor(_type: "normal" | "orbit" | "boss" = "normal") {
+            this.type = _type;
 
-            if (type === "boss") {
+            if (_type === "boss") {
                 this.size = 80;
                 this.speed = 1;
                 this.health = 10;
             } else {
-                const hpVariants = [1, 2, 3];
+                const hpVariants: number[] = [1, 2, 3];
                 this.health = hpVariants[Math.floor(Math.random() * hpVariants.length)];
                 this.size = 30 + Math.random() * 20;
                 this.speed = 2 + Math.random() * 2;
             }
 
             this.enemyPosition = { x: Math.random() * (600 - this.size), y: -40 };
-            this.enemyElement.className = "enemy " + type;
+            this.enemyElement.className = "enemy " + _type;
 
 
-            if (type === "orbit") {
+            if (_type === "orbit") {
                 this.orbitDirectionX = Math.random() < 0.5 ? 1 : -1;
             }
 
@@ -41,12 +41,12 @@ namespace GamesOFGames {
             this.update(0);
         }
 
-        update(timeDelta: number) {
-            const speedFactor = GamesOFGames.bulletTimeActive ? 0.3 : 1;
-            const effectiveSpeed = this.speed * timeDelta * 60;
+        update(_timeDelta: number): void {
+            const speedFactor: number = GamesOFGames.bulletTimeActive ? 0.3 : 1;
+            const effectiveSpeed: number = this.speed * _timeDelta * 60;
 
             if (this.type === "orbit") {
-                this.enemyPosition.x += this.orbitDirectionX * 2 * timeDelta * 60;
+                this.enemyPosition.x += this.orbitDirectionX * 2 * _timeDelta * 60;
                 if (this.enemyPosition.x <= 0) {
                     this.enemyPosition.x = 0;
                     this.orbitDirectionX = 1;
@@ -65,7 +65,7 @@ namespace GamesOFGames {
 
         takeDamage(): boolean {
             this.health--;
-            for (let i = 1; i <= 10; i++) {
+            for (let i:number = 1; i <= 10; i++) {
                 this.enemyElement.classList.remove(`hp-${i}`);
             }
 
@@ -86,15 +86,15 @@ namespace GamesOFGames {
             );
         }
 
-        remove() {
+        remove():void {
             this.enemyElement.remove();
         }
 
-        collides(player: Player): boolean {
-            return this.enemyPosition.x < player.playerPosition.x + 40 &&
-                this.enemyPosition.x + this.size > player.playerPosition.x &&
-                this.enemyPosition.y < player.playerPosition.y + 40 &&
-                this.enemyPosition.y + this.size > player.playerPosition.y;
+        collides(_player: Player): boolean {
+            return this.enemyPosition.x < _player.playerPosition.x + 40 &&
+                this.enemyPosition.x + this.size > _player.playerPosition.x &&
+                this.enemyPosition.y < _player.playerPosition.y + 40 &&
+                this.enemyPosition.y + this.size > _player.playerPosition.y;
         }
     }
 }

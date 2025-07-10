@@ -6,25 +6,25 @@ namespace GamesOFGames {
         velocityX: number = 0;
         velocityY: number = -1;
 
-        constructor(initialPosition: Vector, offsetX: number = 18, targetEnemy?: Enemy) {
-            this.bulletPosition = { x: initialPosition.x + offsetX, y: initialPosition.y };
+        constructor(_initialPosition: Vector, _offsetX: number = 18, _targetEnemy?: Enemy) {
+            this.bulletPosition = { x: _initialPosition.x + _offsetX, y: _initialPosition.y };
             this.bulletElement.className = "bullet";
             gameContainer.appendChild(this.bulletElement);
 
-            if (targetEnemy) {
-                const dx = targetEnemy.enemyPosition.x + targetEnemy.size / 2 - this.bulletPosition.x;
-                const dy = targetEnemy.enemyPosition.y + targetEnemy.size / 2 - this.bulletPosition.y;
-                const dist = Math.sqrt(dx * dx + dy * dy);
+            if (_targetEnemy) {
+                const dx: number = _targetEnemy.enemyPosition.x + _targetEnemy.size / 2 - this.bulletPosition.x;
+                const dy: number = _targetEnemy.enemyPosition.y + _targetEnemy.size / 2 - this.bulletPosition.y;
+                const dist: number = Math.sqrt(dx * dx + dy * dy);
                 this.velocityX = dx / dist;
                 this.velocityY = dy / dist;
             }
 
-            this.update(0); 
+            this.update(0);
         }
 
-        update(timeDelta: number) {
-            const speedFactor = GamesOFGames.bulletTimeActive ? 0.3 : 1;
-            const effectiveSpeed = this.speed * timeDelta * 60;
+        update(_timeDelta: number): void {
+            const speedFactor: number = GamesOFGames.bulletTimeActive ? 0.3 : 1;
+            const effectiveSpeed: number = this.speed * _timeDelta * 60;
 
             this.bulletPosition.x += this.velocityX * effectiveSpeed * speedFactor;
             this.bulletPosition.y += this.velocityY * effectiveSpeed * speedFactor;
@@ -39,7 +39,7 @@ namespace GamesOFGames {
             );
         }
 
-        remove() {
+        remove(): void {
             this.bulletElement.remove();
         }
     }

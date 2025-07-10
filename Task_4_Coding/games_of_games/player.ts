@@ -7,7 +7,7 @@ namespace GamesOFGames {
     declare function updateLivesDisplay(): void;
     declare function gameOver(): void; 
     declare function activateBulletTime(): void; 
-    declare function activateNuke(enemies: Enemy[]): void; 
+    declare function activateNuke(_enemies: Enemy[]): void; 
 
     export class Player {
         playerElement: HTMLDivElement = document.createElement("div");
@@ -15,9 +15,9 @@ namespace GamesOFGames {
         playerSize: Vector = { x: 40, y: 40 };
         playerSpeed: number = 5;
 
-        hasDoubleShot = false;
-        hasFastShot = false;
-        shieldCount = 0;
+        hasDoubleShot:boolean = false;
+        hasFastShot:boolean = false;
+        shieldCount:number = 0;
 
         constructor() {
             this.playerElement.className = "player";
@@ -25,20 +25,20 @@ namespace GamesOFGames {
             this.updatePosition();
         }
 
-        updatePosition() {
+        updatePosition():void {
             this.playerElement.style.left = this.playerPosition.x + "px";
             this.playerElement.style.top = this.playerPosition.y + "px";
         }
 
-        move(activeKeys: Set<string>, timeDelta: number) {
+        move(_activeKeys: Set<string>, _timeDelta: number):void {
            
            
-            const effectiveSpeed = this.playerSpeed * timeDelta * 60;
+            const effectiveSpeed:number = this.playerSpeed * _timeDelta * 60;
 
-            if (activeKeys.has("ArrowLeft")) this.playerPosition.x -= effectiveSpeed;
-            if (activeKeys.has("ArrowRight")) this.playerPosition.x += effectiveSpeed;
-            if (activeKeys.has("ArrowUp")) this.playerPosition.y -= effectiveSpeed;
-            if (activeKeys.has("ArrowDown")) this.playerPosition.y += effectiveSpeed;
+            if (_activeKeys.has("ArrowLeft")) this.playerPosition.x -= effectiveSpeed;
+            if (_activeKeys.has("ArrowRight")) this.playerPosition.x += effectiveSpeed;
+            if (_activeKeys.has("ArrowUp")) this.playerPosition.y -= effectiveSpeed;
+            if (_activeKeys.has("ArrowDown")) this.playerPosition.y += effectiveSpeed;
 
             
             this.playerPosition.x = Math.max(0, Math.min(560, this.playerPosition.x)); 
@@ -47,7 +47,7 @@ namespace GamesOFGames {
             this.updatePosition();
         }
 
-        takeDamage() {
+        takeDamage():void {
             if (this.shieldCount > 0) {
                 this.shieldCount--;
                 if (this.shieldCount === 0) {
@@ -62,17 +62,17 @@ namespace GamesOFGames {
         }
 
         
-        setPowerUp(type: "doubleShot" | "fastShot", value: boolean) {
-            if (type === "doubleShot") {
-                this.hasDoubleShot = value;
-            } else if (type === "fastShot") {
-                this.hasFastShot = value;
+        setPowerUp(_type: "doubleShot" | "fastShot", _value: boolean) :void{
+            if (_type === "doubleShot") {
+                this.hasDoubleShot = _value;
+            } else if (_type === "fastShot") {
+                this.hasFastShot = _value;
             }
         }
 
        
-        applyPowerUp(type: PowerUp["type"], enemies: Enemy[]) {
-            switch (type) {
+        applyPowerUp(_type: PowerUp["type"], _enemies: Enemy[]) :void{
+            switch (_type) {
                 case "doubleShot":
                     this.setPowerUp("doubleShot", true);
                     setTimeout(() => this.setPowerUp("doubleShot", false), 10000);
@@ -89,7 +89,7 @@ namespace GamesOFGames {
                     GamesOFGames.activateBulletTime(); 
                     break;
                 case "nuke":
-                    GamesOFGames.activateNuke(enemies); 
+                    GamesOFGames.activateNuke(_enemies); 
                     break;
             }
             GamesOFGames.updateLivesDisplay(); 

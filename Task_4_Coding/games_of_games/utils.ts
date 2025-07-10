@@ -2,19 +2,19 @@ namespace GamesOFGames {
 
     declare let player: Player;
 
-    export function updateScoreDisplay() {
+    export function updateScoreDisplay(): void {
         scoreDisplay.textContent = "Score: " + GamesOFGames.currentScore + (GamesOFGames.bulletTimeActive ? " ⚡" : "");
     }
 
-    export function updateLivesDisplay() {
-        let hearts = "❤️".repeat(GamesOFGames.currentLives);
+    export function updateLivesDisplay(): void {
+        let hearts: string = "❤️".repeat(GamesOFGames.currentLives);
         if (GamesOFGames.player?.shieldCount) {
-             hearts += " 🛡️".repeat(GamesOFGames.player.shieldCount);
+            hearts += " 🛡️".repeat(GamesOFGames.player.shieldCount);
         }
         livesDisplay.textContent = "Lives: " + hearts;
     }
 
-    export function activateBulletTime() {
+    export function activateBulletTime(): void {
         GamesOFGames.bulletTimeActive = true;
 
         if (GamesOFGames.bulletTimeTimeout !== null) {
@@ -27,23 +27,23 @@ namespace GamesOFGames {
         }, 5000);
     }
 
-    export function activateNuke(enemiesArray: Enemy[]) {
-        GamesOFGames.currentScore += enemiesArray.length * 50;
+    export function activateNuke(_enemiesArray: Enemy[]): void {
+        GamesOFGames.currentScore += _enemiesArray.length * 50;
         GamesOFGames.updateScoreDisplay();
-        for (let i = enemiesArray.length - 1; i >= 0; i--) {
-            enemiesArray[i].remove();
-            enemiesArray.splice(i, 1);
+        for (let i: number = _enemiesArray.length - 1; i >= 0; i--) {
+            _enemiesArray[i].remove();
+            _enemiesArray.splice(i, 1);
         }
     }
 
-    export function findNearestEnemy(bulletX: number, bulletY: number, enemiesArray: Enemy[]): Enemy | undefined {
+    export function findNearestEnemy(_bulletX: number, _bulletY: number, _enemiesArray: Enemy[]): Enemy | undefined {
         let nearestEnemy: Enemy | undefined;
-        let minDistance = Infinity;
+        let minDistance: number = Infinity;
 
-        for (const enemy of enemiesArray) {
-            const dx = enemy.enemyPosition.x - bulletX;
-            const dy = enemy.enemyPosition.y - bulletY;
-            const distance = Math.sqrt(dx * dx + dy * dy);
+        for (const enemy of _enemiesArray) {
+            const dx: number = enemy.enemyPosition.x - _bulletX;
+            const dy: number = enemy.enemyPosition.y - _bulletY;
+            const distance: number = Math.sqrt(dx * dx + dy * dy);
 
             if (distance < minDistance) {
                 minDistance = distance;
@@ -53,72 +53,74 @@ namespace GamesOFGames {
         return nearestEnemy;
     }
 
-    export function handlePlayerShot(bulletsArray: Bullet[], enemiesArray: Enemy[]) {
-        const now = Date.now();
-        const fireRate = GamesOFGames.player.hasFastShot ? GamesOFGames.fastFireRate : GamesOFGames.normalFireRate;
+    export function handlePlayerShot(_bulletsArray: Bullet[], _enemiesArray: Enemy[]): void {
+        const now: number = Date.now();
+        const fireRate: number = GamesOFGames.player.hasFastShot ? GamesOFGames.fastFireRate : GamesOFGames.normalFireRate;
+
         if (now - GamesOFGames.lastShotTime > fireRate) {
             GamesOFGames.lastShotTime = now;
 
             if (GamesOFGames.player.hasDoubleShot) {
-                const target1 = GamesOFGames.findNearestEnemy(GamesOFGames.player.playerPosition.x + 10, GamesOFGames.player.playerPosition.y, enemiesArray);
-                const target2 = GamesOFGames.findNearestEnemy(GamesOFGames.player.playerPosition.x + 26, GamesOFGames.player.playerPosition.y, enemiesArray);
-                bulletsArray.push(new GamesOFGames.Bullet({ ...GamesOFGames.player.playerPosition }, 10, target1));
-                bulletsArray.push(new GamesOFGames.Bullet({ ...GamesOFGames.player.playerPosition }, 26, target2));
+                const target1: Enemy | undefined = GamesOFGames.findNearestEnemy(GamesOFGames.player.playerPosition.x + 10, GamesOFGames.player.playerPosition.y, _enemiesArray);
+                const target2: Enemy | undefined = GamesOFGames.findNearestEnemy(GamesOFGames.player.playerPosition.x + 26, GamesOFGames.player.playerPosition.y, _enemiesArray);
+                _bulletsArray.push(new GamesOFGames.Bullet({ ...GamesOFGames.player.playerPosition }, 10, target1));
+                _bulletsArray.push(new GamesOFGames.Bullet({ ...GamesOFGames.player.playerPosition }, 26, target2));
             } else {
-                bulletsArray.push(new GamesOFGames.Bullet({ ...GamesOFGames.player.playerPosition }));
+                _bulletsArray.push(new GamesOFGames.Bullet({ ...GamesOFGames.player.playerPosition }));
             }
         }
     }
 
-    export function spawnEnemy(enemiesArray: Enemy[]) {
-        const rand = Math.random();
+    export function spawnEnemy(_enemiesArray: Enemy[]): void {
+        const rand: number = Math.random();
         if (rand < 0.05) {
-            enemiesArray.push(new GamesOFGames.Enemy("boss"));
+            _enemiesArray.push(new GamesOFGames.Enemy("boss"));
         } else if (rand < 0.15) {
-            enemiesArray.push(new GamesOFGames.Enemy("orbit"));
+            _enemiesArray.push(new GamesOFGames.Enemy("orbit"));
         } else {
-            enemiesArray.push(new GamesOFGames.Enemy("normal"));
+            _enemiesArray.push(new GamesOFGames.Enemy("normal"));
         }
     }
 
-    export function spawnPowerUp(powerUpsArray: PowerUp[]) {
+    export function spawnPowerUp(_powerUpsArray: PowerUp[]): void {
         const types: PowerUp["type"][] = ["doubleShot", "fastShot", "shield", "bulletTime", "nuke"];
-        const randomIndex = Math.floor(Math.random() * types.length);
-        const randomType = types[randomIndex];
+        const randomIndex: number = Math.floor(Math.random() * types.length);
+
+        const randomType: PowerUp["type"] = types[randomIndex];
 
         if (randomType) {
-            powerUpsArray.push(new GamesOFGames.PowerUp(randomType));
+            _powerUpsArray.push(new GamesOFGames.PowerUp(randomType));
         }
     }
 
-    export function updateAndCleanBullets(bulletsArray: Bullet[], enemiesArray: Enemy[], timeDelta: number) {
-        for (let i = bulletsArray.length - 1; i >= 0; i--) {
-            const bullet = bulletsArray[i];
-            bullet.update(timeDelta);
+    export function updateAndCleanBullets(_bulletsArray: Bullet[], _enemiesArray: Enemy[], _timeDelta: number):void {
+        for (let i:number = _bulletsArray.length - 1; i >= 0; i--) {
+            const bullet:Bullet = _bulletsArray[i];
+            bullet.update(_timeDelta);
 
             if (bullet.isOffscreen()) {
                 bullet.remove();
-                bulletsArray.splice(i, 1);
+                _bulletsArray.splice(i, 1);
                 continue;
             }
 
-            for (let j = enemiesArray.length - 1; j >= 0; j--) {
-                const enemy = enemiesArray[j];
-                const ex = enemy.enemyPosition.x;
-                const ey = enemy.enemyPosition.y;
-                const ew = enemy.size;
-                const eh = enemy.size;
-                const bx = bullet.bulletPosition.x;
-                const by = bullet.bulletPosition.y;
+            for (let j:number = _enemiesArray.length - 1; j >= 0; j--) {
+                const enemy:Enemy = _enemiesArray[j];
+                const ex:number = enemy.enemyPosition.x;
+                const ey:number = enemy.enemyPosition.y;
+                const ew:number = enemy.size;
+                const eh:number = enemy.size;
+                const bx:number = bullet.bulletPosition.x;
+                const by:number = bullet.bulletPosition.y;
 
                 if (
                     bx > ex && bx < ex + ew &&
                     by > ey && by < ey + eh
                 ) {
                     bullet.remove();
-                    bulletsArray.splice(i, 1);
+                    _bulletsArray.splice(i, 1);
                     if (enemy.takeDamage()) {
-                        enemiesArray.splice(j, 1);
+                        _enemiesArray.splice(j, 1);
                     }
                     break;
                 }
@@ -126,41 +128,41 @@ namespace GamesOFGames {
         }
     }
 
-    export function updateAndCleanEnemies(enemiesArray: Enemy[], playerRef: Player, timeDelta: number) {
-        for (let i = enemiesArray.length - 1; i >= 0; i--) {
-            const enemy = enemiesArray[i];
-            enemy.update(timeDelta);
+    export function updateAndCleanEnemies(_enemiesArray: Enemy[], _playerRef: Player, _timeDelta: number):void {
+        for (let i:number= _enemiesArray.length - 1; i >= 0; i--) {
+            const enemy:Enemy = _enemiesArray[i];
+            enemy.update(_timeDelta);
 
             if (enemy.isOffscreen()) {
                 enemy.remove();
-                enemiesArray.splice(i, 1);
+                _enemiesArray.splice(i, 1);
                 continue;
             }
 
-            if (enemy.collides(playerRef)) {
+            if (enemy.collides(_playerRef)) {
                 enemy.remove();
-                enemiesArray.splice(i, 1);
-                playerRef.takeDamage();
+                _enemiesArray.splice(i, 1);
+                _playerRef.takeDamage();
                 continue;
             }
         }
     }
 
-    export function updateAndCleanPowerUps(powerUpsArray: PowerUp[], playerRef: Player, timeDelta: number) {
-        for (let i = powerUpsArray.length - 1; i >= 0; i--) {
-            const powerUp = powerUpsArray[i];
-            powerUp.update(timeDelta);
+    export function updateAndCleanPowerUps(_powerUpsArray: PowerUp[], _playerRef: Player, _timeDelta: number):void {
+        for (let i:number = _powerUpsArray.length - 1; i >= 0; i--) {
+            const powerUp: PowerUp= _powerUpsArray[i];
+            powerUp.update(_timeDelta);
 
             if (powerUp.isOffscreen()) {
                 powerUp.remove();
-                powerUpsArray.splice(i, 1);
+                _powerUpsArray.splice(i, 1);
                 continue;
             }
 
-            if (powerUp.collides(playerRef)) {
-                playerRef.applyPowerUp(powerUp.type, GamesOFGames.enemies);
+            if (powerUp.collides(_playerRef)) {
+                _playerRef.applyPowerUp(powerUp.type, GamesOFGames.enemies);
                 powerUp.remove();
-                powerUpsArray.splice(i, 1);
+                _powerUpsArray.splice(i, 1);
                 continue;
             }
         }
