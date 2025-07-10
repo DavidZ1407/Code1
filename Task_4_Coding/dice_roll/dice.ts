@@ -3,22 +3,22 @@ namespace DiceRoll {
     type DieData = Record<DieType, number>;
     type RollStash = Record<DieType, number[]>;
 
-     let currentDieData: DieData = { d4: 0, d6: 0, d8: 0, d10: 0, d12: 0, d20: 0 };
-     const maxDieData: DieData = { d4: 4, d6: 6, d8: 8, d10: 10, d12: 12, d20: 20 };
-     let rollResults: RollStash = { d4: [], d6: [], d8: [], d10: [], d12: [], d20: [] };
+    let currentDieData: DieData = { d4: 0, d6: 0, d8: 0, d10: 0, d12: 0, d20: 0 };
+    const maxDieData: DieData = { d4: 4, d6: 6, d8: 8, d10: 10, d12: 12, d20: 20 };
+    let rollResults: RollStash = { d4: [], d6: [], d8: [], d10: [], d12: [], d20: [] };
 
-     let rollSum = 0;
- let rollAverage = 0;
-     let minimal = Infinity;
-     let maximal = -Infinity;
-     let median = 0;
+    let rollSum: number = 0;
+    let rollAverage: number = 0;
+    let minimal: number = Infinity;
+    let maximal: number = -Infinity;
+    let median: number = 0;
 
     selectionLoop();
 
-     function selectionLoop(): void {
-        const dieType = selectDieType();
+    function selectionLoop(): void {
+        const dieType: string = selectDieType();
         if (dieType !== "0") {
-            const amount = selectDieAmount(dieType as DieType);
+            const amount: number = selectDieAmount(dieType as DieType);
             saveData(dieType as DieType, amount);
             selectionLoop();
         } else {
@@ -26,8 +26,8 @@ namespace DiceRoll {
         }
     }
 
-     function selectDieType(): string {
-        const input = prompt(
+    function selectDieType(): string {
+        const input: string | null = prompt(
             "Choose a die type:\n" +
             "(1) d4\n" +
             "(2) d6\n" +
@@ -38,7 +38,7 @@ namespace DiceRoll {
             "(0) Start simulation"
         );
 
-        const choice = parseInt(input ?? "", 10);
+        const choice: number = parseInt(input ?? "", 10);
         switch (choice) {
             case 1: return "d4";
             case 2: return "d6";
@@ -51,25 +51,25 @@ namespace DiceRoll {
         }
     }
 
-     function selectDieAmount(dieType: DieType): number {
-        const input = prompt(`How many ${dieType} dice do you want to roll?`);
-        const amount = parseInt(input ?? "", 10);
+    function selectDieAmount(_dieType: DieType): number {
+        const input: string | null = prompt(`How many ${_dieType} dice do you want to roll?`);
+        const amount: number = parseInt(input ?? "", 10);
         if (isNaN(amount) || amount < 1) {
-            return selectDieAmount(dieType);
+            return selectDieAmount(_dieType);
         }
         return amount;
     }
 
-     function saveData(dieType: DieType, amount: number): void {
-        currentDieData[dieType] += amount;
+    function saveData(_dieType: DieType, _amount: number): void {
+        currentDieData[_dieType] += _amount;
     }
 
-     function startSimulation(): void {
+    function startSimulation(): void {
         for (const dieType in currentDieData) {
-            const die = dieType as DieType;
-            const count = currentDieData[die];
-            for (let i = 0; i < count; i++) {
-                const roll = rollDie(maxDieData[die]);
+            const die: DieType = dieType as DieType;
+            const count: number = currentDieData[die];
+            for (let i: number = 0; i < count; i++) {
+                const roll: number = rollDie(maxDieData[die]);
                 rollSum += roll;
                 rollResults[die].push(roll);
             }
@@ -80,12 +80,12 @@ namespace DiceRoll {
         askRestart();
     }
 
-    function rollDie(max: number): number {
-        return Math.floor(Math.random() * max) + 1;
+    function rollDie(_max: number): number {
+        return Math.floor(Math.random() * _max) + 1;
     }
 
     function calculateStats(): void {
-        const allRolls = Object.values(rollResults).flat();
+        const allRolls: number[] = Object.values(rollResults).flat();
 
         if (allRolls.length === 0) return;
 
@@ -95,13 +95,13 @@ namespace DiceRoll {
         median = (minimal + maximal) / 2;
     }
 
-     function showResults(): void {
-        const individualRolls = Object.entries(rollResults)
-            .map(([die, rolls]) => `${die}: ${rolls.join(", ")}`)
-            .filter(line => !line.endsWith(": ")) 
+    function showResults(): void {
+        const individualRolls:string = Object.entries(rollResults)
+            .map(([_die, _rolls]) => `${_die}: ${_rolls.join(", ")}`)
+            .filter(_line => !_line.endsWith(": "))
             .join("\n");
 
-        const resultText = `
+        const resultText: string = `
 +-----------------------------+
 |        ROLL RESULTS         |
 +-----------------------------+
@@ -119,7 +119,7 @@ ${individualRolls}
     }
 
     function askRestart(): void {
-        const input = prompt("Would you like to roll again? (y/n)")?.toLowerCase();
+        const input: string | undefined = prompt("Would you like to roll again? (y/n)")?.toLowerCase();
         if (input === "y") {
 
             currentDieData = { d4: 0, d6: 0, d8: 0, d10: 0, d12: 0, d20: 0 };
